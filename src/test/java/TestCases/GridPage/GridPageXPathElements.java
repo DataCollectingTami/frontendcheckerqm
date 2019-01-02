@@ -143,7 +143,7 @@ public class GridPageXPathElements {
         Assert.assertNotNull(element);
     }
 
-  @Test
+ /** @Test
     public void checkGridItemsNumber(){
         locator = "page.grid.items.number";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -158,7 +158,7 @@ public class GridPageXPathElements {
 
         Assert.assertNotNull(element);
     }
-
+*/
     @Test
     public void checkGridFirstTag(){
         locator = "page.grid.first.tag";

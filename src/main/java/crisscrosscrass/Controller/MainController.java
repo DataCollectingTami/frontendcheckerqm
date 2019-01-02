@@ -72,7 +72,7 @@ public class MainController implements Serializable{
     @FXML JFXCheckBox settingFavoritePage;
     @FXML JFXCheckBox settingPartnerShopPage;
     @FXML JFXCheckBox settingBecomeAPartnerPage;
-    @FXML JFXCheckBox settingAffiliateProgram;
+    //@FXML JFXCheckBox settingAffiliateProgram;
     @FXML JFXCheckBox settingMerchandiseOverviewPage;
     //Element Boxes to hide
     @FXML HBox ElementLuceneBox;
@@ -104,7 +104,7 @@ public class MainController implements Serializable{
     @FXML TextField inputBecomeAPartnerPageURL;
     @FXML TextField inputAccountEmail;
     @FXML PasswordField inputAccountPassword;
-    @FXML TextField inputAffiliateProgramURL;
+    //@FXML TextField inputAffiliateProgramURL;
     @FXML TextField inputMerchandiseOverviewPageURL;
     @FXML TextField inputMerchandiseSearch;
     @FXML HBox outputPlace;
@@ -127,7 +127,7 @@ public class MainController implements Serializable{
     @FXML FontAwesomeIconView infoFavoritePageTest;
     @FXML FontAwesomeIconView infoPartnerShopPageTest;
     @FXML FontAwesomeIconView infoBecomeAPartnerPageTest;
-    @FXML FontAwesomeIconView infoAffiliateTest;
+    //@FXML FontAwesomeIconView infoAffiliateTest;
     @FXML FontAwesomeIconView infoMerchandiseTest;
     @FXML FontAwesomeIconView infoInputFieldTextSearch;
     @FXML FontAwesomeIconView infoInputFieldGridPageURLwithWindows;
@@ -151,7 +151,7 @@ public class MainController implements Serializable{
     @FXML Tab tabFavoritePage;
     @FXML Tab tabPartnerShopPage;
     @FXML Tab tabBecomeAPartnerPage;
-    @FXML Tab tabAffiliateProgram;
+    //@FXML Tab tabAffiliateProgram;
     @FXML Tab tabMerchandiseOverviewPage;
     //data visualisation
     @FXML VBox PlaceForPieCharts;
@@ -168,7 +168,7 @@ public class MainController implements Serializable{
     @FXML FavoritePageController favoritePageController;
     @FXML PartnershopsPageController partnershopsPageController;
     @FXML BecomeAPartnerController becomeAPartnerController;
-    @FXML AffiliateProgramController affiliateProgramController;
+   // @FXML AffiliateProgramController affiliateProgramController;
     @FXML MerchandiseOverviewPageController merchandiseOverviewPageController;
     //ResultBoxes
     @FXML Label globalCounterTestCases;
@@ -184,7 +184,7 @@ public class MainController implements Serializable{
     @FXML Label resultBoxFavoritePage;
     @FXML Label resultBoxPartnershopPage;
     @FXML Label resultBoxBecomePartner;
-    @FXML Label resultBoxAffiliateProgram;
+    //@FXML Label resultBoxAffiliateProgram;
     @FXML Label resultBoxMerchandise;
     @FXML Label BoxHomepageResult;
     @FXML Label BoxGridPageResult;
@@ -198,7 +198,7 @@ public class MainController implements Serializable{
     @FXML Label BoxFavoritePageResult;
     @FXML Label BoxPartnershopPageResult;
     @FXML Label BoxBecomePartnerResult;
-    @FXML Label BoxAffiliateProgramResult;
+    //@FXML Label BoxAffiliateProgramResult;
     @FXML Label BoxMerchandiseResult;
     @FXML VBox placeForFailedTestCases;
     @FXML Label globalPercentTestPassedCounter;
@@ -285,7 +285,7 @@ public class MainController implements Serializable{
         infoFavoritePageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingFavoritePage.getText(),favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoPartnerShopPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingPartnerShopPage.getText(),partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoBecomeAPartnerPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBecomeAPartnerPage.getText(),becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+       // infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
         infoInputFieldLucenePageSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("LucenePageSearch").getHeaderMessage(),InfoText.valueOf("LucenePageSearch").getMainMessage(), placeForTooltipInput));
@@ -310,7 +310,7 @@ public class MainController implements Serializable{
         inputBrandPageOverview.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBrandOverviewPage());
         inputPartnerShopPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationPartnershopsPageURL());
         inputBecomeAPartnerPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationBecomePartnerPageURL());
-        inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
+        //inputAffiliateProgramURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationAffiliateProgramPageURL());
         inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
         startwebdriver.setDisable(false);
         if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
@@ -353,7 +353,7 @@ public class MainController implements Serializable{
             inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
             inputPartnerShopSearch.setText(userData.getProperty("inputPartnerShopSearch"));
             inputBecomeAPartnerPageURL.setText(userData.getProperty("inputBecomeAPartnerPageURL"));
-            inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
+            //inputAffiliateProgramURL.setText(userData.getProperty("inputAffiliateProgramURL"));
             inputMerchandiseOverviewPageURL.setText(userData.getProperty("inputMerchandiseOverviewPageURL"));
             inputMerchandiseSearch.setText(userData.getProperty("inputMerchandiseSearch"));
             countrySelection.setValue(userData.getProperty("countrySelection"));
@@ -391,7 +391,7 @@ public class MainController implements Serializable{
         settingFavoritePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingPartnerShopPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingBecomeAPartnerPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingAffiliateProgram.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+        //settingAffiliateProgram.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingMerchandiseOverviewPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
     }
     @FXML
@@ -548,12 +548,15 @@ public class MainController implements Serializable{
                             gridPageTest.checkingSorting(webDriver,report,js,gridPageNoWindowsController.sortingValues,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch, Homepage);
-                            //gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch, Homepage);
+
+                            // not used* gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch, Homepage);
+
                             gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                             gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter,checkingColorFilter,checkingBrandFilter,checkingMerchandiseFilter);
                             gridPageTest.checkingSearchBoxInBrandFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInBrandFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                             gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+
                             //VisualResults visualResults = new VisualResults();
                             //Platform.runLater(() -> visualResults.createPieChart(PlaceForPieCharts,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),"GridPageTest"));
 
@@ -678,6 +681,7 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxMerchandiseResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"complete",resultBoxMerchandise,BoxMerchandiseResult);
                     } );
+                    /**
                     if (!tabAffiliateProgram.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabAffiliateProgram);
@@ -689,11 +693,13 @@ public class MainController implements Serializable{
                             noBecomeAPartnerWorking.printStackTrace();
                         }
                     }
+
                     Platform.runLater(() -> {
                         updateGlobalTestCases();
                         resultsManager.updateResultsCheckbox(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxAffiliateProgramResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingAffiliateProgram,"complete",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
                     } );
+                     */
                     if (!tabImageGrouping.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabImageGrouping);
@@ -1009,7 +1015,7 @@ public class MainController implements Serializable{
             inputBecomeAPartnerPageURL.setDisable(true);
             inputAccountPassword.setDisable(true);
             inputImprintURL.setDisable(true);
-            inputAffiliateProgramURL.setDisable(true);
+           // inputAffiliateProgramURL.setDisable(true);
             inputMerchandiseOverviewPageURL.setDisable(true);
             inputMerchandiseSearch.setDisable(true);
             downloadFailCasesReport.setDisable(true);
@@ -1041,7 +1047,7 @@ public class MainController implements Serializable{
             inputBecomeAPartnerPageURL.setDisable(false);
             inputImprintURL.setDisable(false);
             inputAccountPassword.setDisable(false);
-            inputAffiliateProgramURL.setDisable(false);
+            //inputAffiliateProgramURL.setDisable(false);
             inputMerchandiseOverviewPageURL.setDisable(false);
             inputMerchandiseSearch.setDisable(false);
             downloadFailCasesReport.setDisable(false);
@@ -1087,7 +1093,7 @@ public class MainController implements Serializable{
         settingFavoritePage.setSelected(true);
         settingPartnerShopPage.setSelected(true);
         settingBecomeAPartnerPage.setSelected(true);
-        settingAffiliateProgram.setSelected(true);
+        //settingAffiliateProgram.setSelected(true);
         settingMerchandiseOverviewPage.setSelected(true);
         updateCheckerTabs();
         changeColorForStartButton();
@@ -1113,7 +1119,7 @@ public class MainController implements Serializable{
         settingFavoritePage.setSelected(false);
         settingPartnerShopPage.setSelected(false);
         settingBecomeAPartnerPage.setSelected(false);
-        settingAffiliateProgram.setSelected(false);
+        //settingAffiliateProgram.setSelected(false);
         settingMerchandiseOverviewPage.setSelected(false);
         updateCheckerTabs();
         changeColorForStartButton();
@@ -1317,7 +1323,7 @@ public class MainController implements Serializable{
         settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage);
         settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage);
         settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage);
-        settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
+       // settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
         settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage);
         if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
             ElementGridPageWithoutWindowBox.setVisible(true);
@@ -1356,7 +1362,7 @@ public class MainController implements Serializable{
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+      //  globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         return globalCounterTestCasesNumber;
     }
@@ -1375,7 +1381,7 @@ public class MainController implements Serializable{
         settingManager.updateResultBoxes(settingFavoritePage,"",resultBoxFavoritePage,BoxFavoritePageResult);
         settingManager.updateResultBoxes(settingPartnerShopPage,"",resultBoxPartnershopPage,BoxPartnershopPageResult);
         settingManager.updateResultBoxes(settingBecomeAPartnerPage,"",resultBoxBecomePartner,BoxBecomePartnerResult);
-        settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
+      //  settingManager.updateResultBoxes(settingAffiliateProgram,"",resultBoxAffiliateProgram,BoxAffiliateProgramResult);
         settingManager.updateResultBoxes(settingMerchandiseOverviewPage,"",resultBoxMerchandise,BoxMerchandiseResult);
     }
     private void updateGlobalTestCases(){
@@ -1397,7 +1403,7 @@ public class MainController implements Serializable{
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingFavoritePage,favoritePageController.favoritePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingPartnerShopPage,partnershopsPageController.partnerShopCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBecomeAPartnerPage,becomeAPartnerController.becomePartnerCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+     //   globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingAffiliateProgram,affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMerchandiseOverviewPage,merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         return globalFailedTestCasesNumber;
     }

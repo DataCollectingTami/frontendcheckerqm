@@ -1,9 +1,8 @@
 package crisscrosscrass.Controller;
 
-import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Main;
+import crisscrosscrass.Tasks.AnimationObject;
 import crisscrosscrass.Tasks.ConfigSettings;
-import crisscrosscrass.Tests.AffiliateProgramTest;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.log4j.Logger;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -101,7 +101,7 @@ public class SplashFXMLController implements Initializable {
                                 properties.setProperty("inputPartnerShopPageURL",controller.inputPartnerShopPageURL.getText());
                                 properties.setProperty("inputPartnerShopSearch",controller.inputPartnerShopSearch.getText());
                                 properties.setProperty("inputBecomeAPartnerPageURL",controller.inputBecomeAPartnerPageURL.getText());
-                                properties.setProperty("inputAffiliateProgramURL",controller.inputAffiliateProgramURL.getText());
+                             //   properties.setProperty("inputAffiliateProgramURL",controller.inputAffiliateProgramURL.getText());
                                 properties.setProperty("inputMerchandiseOverviewPageURL",controller.inputMerchandiseOverviewPageURL.getText());
                                 properties.setProperty("inputMerchandiseSearch",controller.inputMerchandiseSearch.getText());
                                 if (controller.countrySelection.getSelectionModel().getSelectedItem() != null){

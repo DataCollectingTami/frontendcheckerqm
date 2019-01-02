@@ -235,17 +235,25 @@ public class MainMenuOnHomePageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.shoppingworld"))));
-                    webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).click();
-                    if (webDriver.getCurrentUrl().contains("inspiration")){
-                        ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorlds);
-                        report.writeToFile(infoMessage, "User is redirected to a page whose URL contains \"inspiration\"");
-                    }else {
-                        ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
-                        report.writeToFile(infoMessage, "User is NOT redirected to a page whose URL contains \"inspiration\"");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check: Shopping World link does not seem to lead to the correct URL", "FailAndReview");
-                        failedTestCases.writeToNamedFile("================================= TC 57.1","FailAndReview");
+                    try{ webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).isDisplayed();
+
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.shoppingworld"))));
+                        webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).click();
+                        if (webDriver.getCurrentUrl().contains("inspiration")) {
+                            ChangeCheckBox.adjustStyle(true, "complete", ShoppingWorlds);
+                            report.writeToFile(infoMessage, "User is redirected to a page whose URL contains \"inspiration\"");
+                        } else {
+                            ChangeCheckBox.adjustStyle(true, "nope", ShoppingWorlds);
+                            report.writeToFile(infoMessage, "User is NOT redirected to a page whose URL contains \"inspiration\"");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Shopping World link does not seem to lead to the correct URL", "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 57.1", "FailAndReview");
+                        }
+                    }catch (Exception noShoppingWorld){
+                        ChangeCheckBox.adjustStyle(true, "complete", ShoppingWorlds);
+                        failedTestCases.writeToNamedFile(infoMessage, "This platform does not have Shopping Worlds", "FailAndReview");
+                        noShoppingWorld.printStackTrace();
                     }
+
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorlds);
                     webDriver.navigate().to(inputSearch.getText().trim());
@@ -286,15 +294,17 @@ public class MainMenuOnHomePageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.shoppingworld"))));
-                    final String previousURL = webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).getAttribute("href").toLowerCase().trim();
-                    webDriver.navigate().to("https://www.google.com/");
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='lst-ib']")));
-                    WebElement googleSearch = webDriver.findElementByXPath("//*[@id='lst-ib']");
-                    googleSearch.sendKeys("site:"+previousURL);
-                    googleSearch.submit();
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='g']//h3/a")));
-                    List<WebElement> GoogleResults = webDriver.findElementsByXPath("//div[@class='g']//h3/a");
+                    webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).isDisplayed();
+                    try {
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.main.shoppingworld"))));
+                        final String previousURL = webDriver.findElementByXPath(Homepage.getProperty("page.main.shoppingworld")).getAttribute("href").toLowerCase().trim();
+                        webDriver.navigate().to("https://www.google.com/");
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='lst-ib']")));
+                        WebElement googleSearch = webDriver.findElementByXPath("//*[@id='lst-ib']");
+                        googleSearch.sendKeys("site:" + previousURL);
+                        googleSearch.submit();
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='g']//h3/a")));
+                        List<WebElement> GoogleResults = webDriver.findElementsByXPath("//div[@class='g']//h3/a");
                         /* havent
                         if (previousURL.equals(GoogleResults.get(0).getAttribute("href").toLowerCase().trim())){
                             logger.info("Site on index");
@@ -306,17 +316,17 @@ public class MainMenuOnHomePageTest {
                             report.writeToFile(infoMessage,"\"" + previousURL+"\" | No Index");
                         }
                          */
-                    if (GoogleResults.size() > 0 ){
-                        logger.info("Site on index");
-                        ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorldsOnIndex);
-                        report.writeToFile(infoMessage,"\"" + previousURL+"\" | Index");
-                    }else {
-                        logger.info("Site not index");
-                        ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
-                        report.writeToFile(infoMessage,"\"" + previousURL+"\" | No Index");
-                        failedTestCases.writeToNamedFile(infoMessage,"Please check Shopping world link: \"" + previousURL+"\" | No Index", "FailAndReview");
-                        failedTestCases.writeToNamedFile("================================= TC 57.2","FailAndReview");
-                    }
+                        if (GoogleResults.size() > 0) {
+                            logger.info("Site on index");
+                            ChangeCheckBox.adjustStyle(true, "complete", ShoppingWorldsOnIndex);
+                            report.writeToFile(infoMessage, "\"" + previousURL + "\" | Index");
+                        } else {
+                            logger.info("Site not index");
+                            ChangeCheckBox.adjustStyle(true, "nope", ShoppingWorldsOnIndex);
+                            report.writeToFile(infoMessage, "\"" + previousURL + "\" | No Index");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check Shopping world link: \"" + previousURL + "\" | No Index", "FailAndReview");
+                            failedTestCases.writeToNamedFile("================================= TC 57.2", "FailAndReview");
+                        }
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);
                     webDriver.navigate().to(inputSearch.getText().trim());
@@ -324,6 +334,11 @@ public class MainMenuOnHomePageTest {
                     failedTestCases.writeToNamedFile("Please check Main Menu: Couldn't detect if  \"Shopping World\" Link is indexed.", "FailAndReview");
                     failedTestCases.writeToNamedFile("================================= TC 57.2","FailAndReview");
                     gridPageIssue.printStackTrace();
+                }
+                }catch (Exception noShoppingWorld){
+                    ChangeCheckBox.adjustStyle(true,"complete",ShoppingWorldsOnIndex);
+                    failedTestCases.writeToNamedFile(infoMessage, "This platform does not have Shopping Worlds", "FailAndReview");
+                    noShoppingWorld.printStackTrace();
                 }
             }catch (Exception noRequestedSiteFound){
                 ChangeCheckBox.adjustStyle(true,"nope",ShoppingWorldsOnIndex);

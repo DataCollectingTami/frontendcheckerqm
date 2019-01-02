@@ -96,7 +96,23 @@ public enum countries{
             "https://www.shopalike.fi/partner/shops",
             "https://www.shopalike.fi/partner/info",
             "https://www.shopalike.fi/affiliate-programm/",
-            "https://www.shopalike.fi/merchandise.html");
+            "https://www.shopalike.fi/merchandise.html"),
+    DK("https://www.shopalike.dk/",
+            "https://www.shopalike.dk/virksomhedsinformation.html",
+            "https://www.shopalike.dk/brugervilkaar.html",
+            "https://www.shopalike.dk/brands.html",
+            "https://www.shopalike.dk/partner/shops",
+            "https://www.shopalike.dk/partner/info",
+            "https://www.shopalike.dk/affiliate-programm/",
+            "https://www.shopalike.dk/merchandise.html"),
+    SE("https://www.shopalike.se/",
+               "https://www.shopalike.se/foretagsinformation.html",
+               "https://www.shopalike.se/villkor-for-anvandning.html",
+               "https://www.shopalike.se/marken.html",
+               "https://www.shopalike.se/partner/shops",
+               "https://www.shopalike.se/partner/info",
+               "https://www.shopalike.se/affiliate-programm/",
+               "https://www.shopalike.se/merchandise.html");
     private final String locationMainPage;
     private final String locationImprintPage;
     private final String locationPrivacyPage;
