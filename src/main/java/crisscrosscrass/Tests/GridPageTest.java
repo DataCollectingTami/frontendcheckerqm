@@ -374,6 +374,7 @@ public class GridPageTest {
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.size.button"))));
                     try {
                         webDriver.findElementByXPath(Homepage.getProperty("page.pageNumbers")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
@@ -395,12 +396,17 @@ public class GridPageTest {
                                 failedTestCases.writeToNamedFile("=================================TC 11.1","FailAndReview");
                             }
                         }
-                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
-                        webDriver.findElementByXPath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')] ").click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(@class, 'Click-Navigated-Previous_Page_Button')]")));
+
+                        webDriver.findElementByXPath(Homepage.getProperty("page.previousPage.button")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+
                         if (!webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
+                            ChangeCheckBox.adjustStyle(true,"complete",pagingForwardBackward);
                         }else {
+                            ChangeCheckBox.adjustStyle(true,"nope",pagingForwardBackward);
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Not Successful! User is not redirected");
                             failedTestCases.writeToNamedFile("Grid Paging Forward", "Please check paging functionality on Grid Page.", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorPagingBackward.png");
@@ -414,7 +420,6 @@ public class GridPageTest {
                                 failedTestCases.writeToNamedFile("=================================TC 11.2","FailAndReview");
                             }
                         }
-                        ChangeCheckBox.adjustStyle(true,"complete",pagingForwardBackward);
                         report.writeToFile(infoMessage, "Complete");
 
 
@@ -647,7 +652,7 @@ public class GridPageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingStyleBoxOpenClose1(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = styleBoxOpenClose.getText();
         ChangeCheckBox.adjustStyle(false,"progress",styleBoxOpenClose);
         Platform.runLater(() -> {
@@ -754,6 +759,108 @@ public class GridPageTest {
         }
         report.writeToFile("=================================", "");
     }
+
+    /**Automate show more show less*/
+    public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+        final String infoMessage = styleBoxOpenClose.getText();
+        ChangeCheckBox.adjustStyle(false,"progress",styleBoxOpenClose);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURL.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.windows"))).size() > 0){
+                        report.writeToFile("provided GridPageURL "+inputGridPageURL.getText(), " included Windows! Adjusted GridPage to make test happen!");
+                        webDriver.findElementByXPath(Homepage.getProperty("page.grid.windows.continue")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
+                    }
+                    try {
+
+                        webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showMoreTags.button")).click();
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))));
+
+                        if (webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showLessTags.button")) != null ) {
+                            report.writeToFile("GridPage See More: ", "Style Boxes are expanded successfully!");
+
+                        }
+
+                        webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showLessTags.button")).click();
+
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.showLessTags.button"))));
+                            if (webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button.hidden"))) != null) {
+                                report.writeToFile("GridPage See More: ", "Style Boxes are open and closed successfully!");
+                                ChangeCheckBox.adjustStyle(true, "complete", styleBoxOpenClose);
+
+                            } else {
+                                report.writeToFile("GridPage See More: ", "Style box was not succesfully open and closed.");
+                                failedTestCases.writeToNamedFile("Please check \"See More\" and \"See Less\" functionality  in style box on Grid Page", "Box not successfully open and closed!", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 14", "FailAndReview");
+                                ChangeCheckBox.adjustStyle(true, "nope", styleBoxOpenClose);
+                            }
+                            report.writeToFile(infoMessage, "Successful! See-more button working as expected");
+
+
+
+                    }catch (Exception noStyleBoxOpenCloseFound){
+                        ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
+                        isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
+                        if (isSuccessful){
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Open/Close), see GridPageErrorStyleBoxOpenClose", "See GridPageErrorStyleBoxOpenClose, Style box should not be expanded", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                        }else {
+                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Open/Close), see GridPageErrorStyleBoxOpenClose", "Screenshot not successful!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                        }
+                        report.writeToFile(infoMessage, "Couldn't find any Show-More Button");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't find see-more button on style box", "FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                    }
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
+                    isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
+                    if (isSuccessful){
+                        report.writeToFile("For more information about the Style box functionality error, see GridPageErrorStyleBoxOpenClose", "Screenshot successful!");                failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                    }else {
+                        report.writeToFile("For more information about the Style box functionality error, see GridPageErrorStyleBoxOpenClose", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile(infoMessage, "Sorting on this Page doesn't seems to be working or very slow");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noMainMenuLinkFound){
+                ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please Check: couldn't navigate to Style Box link", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+                noMainMenuLinkFound.printStackTrace();
+            }
+        }catch (Exception noCategoryLinksLeftSideMenu){
+            ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Check style box: browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
+            noCategoryLinksLeftSideMenu.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+
+
+
+    /**end of automation show more less*/
+
+
+
+
     public void checkingFilterApply(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox filtersApply, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, Properties Homepage, boolean isSuccessful, boolean isAvailable, JFXCheckBox checkingSalesPriceFilter, JFXCheckBox checkingGenderFilter, JFXCheckBox checkingColorFilter, JFXCheckBox checkingBrandFilter, JFXCheckBox checkingMerchandiseFilter){
         final String infoMessage = filtersApply.getText();
         ChangeCheckBox.adjustStyle(false,"progress",filtersApply);
@@ -1231,7 +1338,7 @@ public class GridPageTest {
                         }else{
                             ChangeCheckBox.adjustStyle(true,"nope",searchBoxInBrandFilter);
                             report.writeToFile(infoMessage, "Not successful! ");
-                            failedTestCases.writeToNamedFile(infoMessage, "Please check: Brand search in Filter box not successful", "FailAndReview");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check: the keyword \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" could not be found in the URL", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorSearchInBrandFilter.png");
                             if (isSuccessful){
                                 report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
