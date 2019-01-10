@@ -21,7 +21,7 @@ public class BrandXPathElements {
     final static Logger logger = Logger.getLogger(BrandXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "FR";
+    private static String countrieSelection = "IT";
     private static String locator;
     WebElement element;
 

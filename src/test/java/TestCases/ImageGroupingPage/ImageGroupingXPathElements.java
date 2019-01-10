@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class ImageGroupingXPathElements {final static Logger logger = Logger.getLogger(ImageGroupingXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "SK";
+    private static String countrieSelection = "DK";
     private static String locator;
     WebElement element;
 

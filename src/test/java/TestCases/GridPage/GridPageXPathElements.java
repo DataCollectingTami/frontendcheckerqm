@@ -565,24 +565,8 @@ public class GridPageXPathElements {
 
     /**Grid Fill In Tests*/
 
-    @Test
-    public void checkFillInMore(){
-        locator = "page.grid.fillInMore";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.manage().window().maximize();
-        driver.navigate().to(gridFIUrl);
-        //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        try {
-            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
-        } catch (Exception xpathNotFound) {
-            logger.error("Couldn't find " + locator + " \n" +
-                    Homepage.get(locator) + " | might be outdated");
-        }
 
-        Assert.assertNotNull(element);
-    }
-
-  /*  @Test
+  @Test
     public void checkFillInAll(){
         locator = "page.grid.fillInAll";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -597,7 +581,7 @@ public class GridPageXPathElements {
         }
 
         Assert.assertNotNull(element);
-    } */
+    }
 
 
 

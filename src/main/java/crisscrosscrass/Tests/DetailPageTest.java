@@ -263,7 +263,7 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
-                        if (webDriver.getCurrentUrl().contains("2")){
+                        if (webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
                             report.writeToFile(infoMessage, "Not Successful! User is not redirected");
@@ -284,12 +284,15 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
-                        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.previousPage.button"))));
+                        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.pageNumbers"))));
+
+
                         if (!webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button disappeared!");
                             ChangeCheckBox.adjustStyle(true,"complete",PagingForwardBackward);
                         }else {
                             report.writeToFile(infoMessage, "Not Successful! User is not redirected");
+
                             failedTestCases.writeToNamedFile(infoMessage, "Please check: Backward Paging functionality seems to not be working on Detail page.", "FailAndReview");
                             isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"DetailPageErrorPagingBackward.png");
                             if (isSuccessful){

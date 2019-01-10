@@ -371,7 +371,7 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.windows.continue"))));
                     }
 
-                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.grid.size.button"))));
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                     try {
                         webDriver.findElementByXPath(Homepage.getProperty("page.pageNumbers")).click();
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
@@ -379,8 +379,7 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
 
-
-                        if (webDriver.getCurrentUrl().contains("2")){
+                        if (webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile("Checking  GridPage Paging Forward: ", "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
                             report.writeToFile("Checking  GridPage Paging Forward: ", "Not Successful! User is not redirected");
@@ -401,6 +400,8 @@ public class GridPageTest {
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.grid.loader"))));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
+
+
 
                         if (!webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile("Checking  GridPage Paging Backward: ", "Successful! Found pattern in URL and Previous Page Button disappeared!");
@@ -760,7 +761,7 @@ public class GridPageTest {
         report.writeToFile("=================================", "");
     }
 
-    /**Automate show more show less*/
+    /**Automate Open/Close Test Case*/
     public void checkingStyleBoxOpenClose(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox styleBoxOpenClose, TextField inputGridPageURL, Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = styleBoxOpenClose.getText();
         ChangeCheckBox.adjustStyle(false,"progress",styleBoxOpenClose);
@@ -782,17 +783,19 @@ public class GridPageTest {
                     try {
 
                         webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showMoreTags.button")).click();
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))));
+                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.style.hidden"))));
 
-                        if (webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showLessTags.button")) != null ) {
+                        if (webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.style.hidden")).isEnabled()) {
                             report.writeToFile("GridPage See More: ", "Style Boxes are expanded successfully!");
-
                         }
 
                         webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showLessTags.button")).click();
 
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.showLessTags.button"))));
-                            if (webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button.hidden"))) != null) {
+                        wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.sidebar.style.hidden")))));
+
+
+
+                        if (webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.showMoreTags.button.hidden")) != null) {
                                 report.writeToFile("GridPage See More: ", "Style Boxes are open and closed successfully!");
                                 ChangeCheckBox.adjustStyle(true, "complete", styleBoxOpenClose);
 
@@ -810,12 +813,12 @@ public class GridPageTest {
                         ChangeCheckBox.adjustStyle(true,"nope",styleBoxOpenClose);
                         isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver,"GridPageErrorStyleBoxOpenClose.png");
                         if (isSuccessful){
-                            report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Open/Close), see GridPageErrorStyleBoxOpenClose", "See GridPageErrorStyleBoxOpenClose, Style box should not be expanded", "FailAndReview");
+                            report.writeToFile("GridPage Error Screenshot: ", "See GridPageErrorStyleBoxOpenClose!");
+                            failedTestCases.writeToNamedFile("GridPage Error Screenshot: ", "Screenshot successful!", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
                         }else {
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
-                            failedTestCases.writeToNamedFile("For more information about the Style box functionality error (Open/Close), see GridPageErrorStyleBoxOpenClose", "Screenshot not successful!", "FailAndReview");
+                            failedTestCases.writeToNamedFile("GridPage Error Screenshot: ", "Screenshot not successful!", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 14","FailAndReview");
                         }
                         report.writeToFile(infoMessage, "Couldn't find any Show-More Button");
