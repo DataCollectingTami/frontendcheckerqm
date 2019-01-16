@@ -332,7 +332,7 @@ public class PartnerShopsPageTest {
                     ChangeCheckBox.adjustStyle(true,"nope",ShopLinkLogo);
                     webDriver.navigate().to(inputPartnerShopPageURL.getText().trim());
                     report.writeToFile(infoMessage, "Couldn't detect \"Shop Logo\" Button");
-                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Shop Logo\"  on Partnershops Page", "FailAndReview");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't detect \"Shop Logo\" on Partnershops Page", "FailAndReview");
                     failedTestCases.writeToNamedFile("=================================TC 40.2","FailAndReview");
                     gridPageIssue.printStackTrace();
                 }

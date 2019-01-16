@@ -134,7 +134,7 @@ public class MainController implements Serializable{
     @FXML FontAwesomeIconView infoInputFieldGridPageURLwithoutWindows;
     @FXML FontAwesomeIconView infoInputFieldBrandShopKeyword;
     @FXML FontAwesomeIconView infoInputFieldGridPageWitthFillIns;
-    @FXML FontAwesomeIconView infoInputFieldLucenePageSearch;
+//    @FXML FontAwesomeIconView infoInputFieldLucenePageSearch;
     @FXML FontAwesomeIconView exclamationMarkGridPageURLwithoutWindows;
     @FXML FontAwesomeIconView infoInputFieldShopSearch;
     @FXML FontAwesomeIconView infoInputFieldMerchandiseSearch;
@@ -144,7 +144,7 @@ public class MainController implements Serializable{
     @FXML Tab tabGridPageWithWindows;
     @FXML Tab tabGridPageFillIns;
     @FXML Tab tabBrandPage;
-    @FXML Tab tabLucenePage;
+  //  @FXML Tab tabLucenePage;
     @FXML Tab tabMainMenuOnHomePage;
     @FXML Tab tabDetailPage;
     @FXML Tab tabImageGrouping;
@@ -161,7 +161,7 @@ public class MainController implements Serializable{
     @FXML GridPageNoWindowsController gridPageNoWindowsController;
     @FXML GridPageWithFillInsController gridPageWithFillInsController;
     @FXML BrandOverviewController brandOverviewController;
-    @FXML PageLuceneWithItemsController pageLuceneWithItemsController;
+//    @FXML PageLuceneWithItemsController pageLuceneWithItemsController;
     @FXML MainMenuOnHomePageController mainMenuOnHomePageController;
     @FXML DetailPageController detailPageController;
     @FXML ImageGroupingController imageGroupingController;
@@ -177,7 +177,7 @@ public class MainController implements Serializable{
     @FXML Label resultBoxGridPageWindows;
     @FXML Label resultBoxGridPageFillIns;
     @FXML Label resultBoxBrandPage;
-    @FXML Label resultBoxLucenePage;
+  //  @FXML Label resultBoxLucenePage;
     @FXML Label resultBoxMainMenuOnHomePage;
     @FXML Label resultBoxDetailPage;
     @FXML Label resultBoxImageGrouping;
@@ -191,7 +191,7 @@ public class MainController implements Serializable{
     @FXML Label BoxGridPageWindowsResult;
     @FXML Label BoxGridPageFillInsResult;
     @FXML Label BoxBrandPageResult;
-    @FXML Label BoxLucenePageResult;
+  //  @FXML Label BoxLucenePageResult;
     @FXML Label BoxMainMenuOnHomePageResult;
     @FXML Label BoxDetailPageResult;
     @FXML Label BoxImageGroupingResult;
@@ -278,7 +278,7 @@ public class MainController implements Serializable{
         infoGridPageWindowTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageWithWindows.getText(),gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoGridPageFillInsTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingGridPageFillIns.getText(),gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoBrandTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingBrandPage.getText(),brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
-        infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
+       // infoLuceneTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingLucenePage.getText(),pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoOnMainMenuTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMainMenuOnHomePage.getText(),mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoDetailPageTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingDetailPage.getText(),detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoImageGroupingTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingImageGrouping.getText(),imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
@@ -288,7 +288,7 @@ public class MainController implements Serializable{
        // infoAffiliateTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingAffiliateProgram.getText(),affiliateProgramController.affiliateProgramCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoMerchandiseTest.setOnMouseClicked(event -> modalBox.showDialogTestCases(settingMerchandiseOverviewPage.getText(),merchandiseOverviewPageController.merchandiseOverviewCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]), placeForTooltipSetting));
         infoInputFieldTextSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("TextSearch").getHeaderMessage(),InfoText.valueOf("TextSearch").getMainMessage(), placeForTooltipInput));
-        infoInputFieldLucenePageSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("LucenePageSearch").getHeaderMessage(),InfoText.valueOf("LucenePageSearch").getMainMessage(), placeForTooltipInput));
+       // infoInputFieldLucenePageSearch.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("LucenePageSearch").getHeaderMessage(),InfoText.valueOf("LucenePageSearch").getMainMessage(), placeForTooltipInput));
         infoInputFieldGridPageWitthFillIns.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageWitthFillIns").getHeaderMessage(),InfoText.valueOf("GridPageWitthFillIns").getMainMessage(), placeForTooltipInput));
         infoInputFieldBrandShopKeyword.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("BrandShopKeyword").getHeaderMessage(),InfoText.valueOf("BrandShopKeyword").getMainMessage(), placeForTooltipInput));
         infoInputFieldGridPageURLwithoutWindows.setOnMouseClicked(event -> modalBox.showDialogInputFieldValidation(InfoText.valueOf("GridPageURL").getHeaderMessage(),InfoText.valueOf("GridPageURL").getMainMessage(), placeForTooltipInput));
@@ -347,7 +347,7 @@ public class MainController implements Serializable{
             inputGridPageURLWithWindows.setText(userData.getProperty("inputGridPageURLWithWindows"));
             inputGridPageURLWithFillIns.setText(userData.getProperty("inputGridPageURLWithFillIns"));
             inputBrandPageOverview.setText(userData.getProperty("inputBrandPageOverview"));
-            inputLucenePage.setText(userData.getProperty("inputLucenePage"));
+          //  inputLucenePage.setText(userData.getProperty("inputLucenePage"));
             inputAccountEmail.setText(userData.getProperty("inputAccountEmail"));
             inputAccountPassword.setText(userData.getProperty("inputAccountPassword"));
             inputPartnerShopPageURL.setText(userData.getProperty("inputPartnerShopPageURL"));
@@ -359,7 +359,7 @@ public class MainController implements Serializable{
             countrySelection.setValue(userData.getProperty("countrySelection"));
     }
     private void bindVisibilityProbertyToElements() {
-        ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
+     //   ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
         ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
         ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
         ElementShopSearchBox.visibleProperty().bind(settingPartnerShopPage.selectedProperty());
@@ -369,7 +369,7 @@ public class MainController implements Serializable{
         ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
         ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
         infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
-        infoInputFieldLucenePageSearch.visibleProperty().bind(ElementLuceneBox.visibleProperty());
+      //  infoInputFieldLucenePageSearch.visibleProperty().bind(ElementLuceneBox.visibleProperty());
         infoInputFieldGridPageWitthFillIns.visibleProperty().bind(ElementGridPageWithFillInsBox.visibleProperty());
         infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
         infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
@@ -384,7 +384,7 @@ public class MainController implements Serializable{
         settingGridPageWithWindows.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingGridPageFillIns.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingBrandPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
-        settingLucenePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
+      //  settingLucenePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingMainMenuOnHomePage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingDetailPage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
         settingImageGrouping.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
@@ -584,7 +584,8 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxGridPageFillInsResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingGridPageFillIns,"complete",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
                     } );
-                    if (!tabLucenePage.isDisable()){
+                  /**
+                   * if (!tabLucenePage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabLucenePage);
                             settingManager.updateResultBoxes(settingLucenePage,"progress",resultBoxLucenePage,BoxLucenePageResult);
@@ -601,6 +602,7 @@ public class MainController implements Serializable{
                         resultsManager.updateResultsCheckbox(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),BoxLucenePageResult,placeForFailedTestCases);
                         settingManager.updateResultBoxes(settingLucenePage,"complete",resultBoxLucenePage,BoxLucenePageResult);
                     } );
+                   */
                     if (!tabDetailPage.isDisable()){
                         try{
                             tabPane.getSelectionModel().select(tabDetailPage);
@@ -1008,7 +1010,7 @@ public class MainController implements Serializable{
             inputGridPageURLWithWindows.setDisable(true);
             inputGridPageURLWithFillIns.setDisable(true);
             inputBrandPageOverview.setDisable(true);
-            inputLucenePage.setDisable(true);
+         //   inputLucenePage.setDisable(true);
             inputAccountEmail.setDisable(true);
             inputPartnerShopPageURL.setDisable(true);
             inputPartnerShopSearch.setDisable(true);
@@ -1040,7 +1042,7 @@ public class MainController implements Serializable{
             inputGridPageURLWithWindows.setDisable(false);
             inputGridPageURLWithFillIns.setDisable(false);
             inputBrandPageOverview.setDisable(false);
-            inputLucenePage.setDisable(false);
+          //  inputLucenePage.setDisable(false);
             inputAccountEmail.setDisable(false);
             inputPartnerShopPageURL.setDisable(false);
             inputPartnerShopSearch.setDisable(false);
@@ -1082,7 +1084,7 @@ public class MainController implements Serializable{
         settingGridPage.setSelected(true);
         settingGridPageWithWindows.setSelected(true);
         settingGridPageFillIns.setSelected(true);
-        settingLucenePage.setSelected(true);
+       // settingLucenePage.setSelected(true);
         settingMainMenuOnHomePage.setSelected(true);
         settingDetailPage.setSelected(true);
         if (countrySelection.getValue() != null){
@@ -1108,7 +1110,7 @@ public class MainController implements Serializable{
         settingGridPageWithWindows.setSelected(false);
         settingGridPageFillIns.setSelected(false);
         settingBrandPage.setSelected(false);
-        settingLucenePage.setSelected(false);
+       // settingLucenePage.setSelected(false);
         settingMainMenuOnHomePage.setSelected(false);
         settingDetailPage.setSelected(false);
         if (countrySelection.getValue() != null) {
@@ -1182,11 +1184,12 @@ public class MainController implements Serializable{
                     ValidationsErrors.append("- the inputGridPageURLWithFillIns cannot be empty\n");
                 }
             }
+            /**
             if (settingLucenePage.isSelected()){
                 if (inputLucenePage.getText().length() < 1){
                     ValidationsErrors.append("- the inputLucenePage cannot be empty\n");
                 }
-            }
+            } */
             if (settingPartnerShopPage.isSelected()){
                 if (inputPartnerShopSearch.getText().length() < 1){
                     ValidationsErrors.append("- the inputPartnerShopSearch cannot be empty\n");
@@ -1279,13 +1282,13 @@ public class MainController implements Serializable{
                     inputGridPageURLWithFillIns.setStyle(successStyleSettings);
                 }
             }
-            if (settingLucenePage.isSelected()){
+         /**   if (settingLucenePage.isSelected()){
                 if (inputLucenePage.getText().length() < 1){
                     inputLucenePage.setStyle(failureStyleSettings);
                 }else{
                     inputLucenePage.setStyle(successStyleSettings);
                 }
-            }
+            } */
             if (settingPartnerShopPage.isSelected()){
                 if (inputPartnerShopSearch.getText().length() < 1){
                     inputPartnerShopSearch.setStyle(failureStyleSettings);
@@ -1316,7 +1319,7 @@ public class MainController implements Serializable{
         settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows);
         settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns);
         settingManager.updateSettingControlls(settingBrandPage,tabBrandPage);
-        settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
+      //  settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
         settingManager.updateSettingControlls(settingMainMenuOnHomePage, tabMainMenuOnHomePage);
         settingManager.updateSettingControlls(settingDetailPage,tabDetailPage);
         settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping);
@@ -1355,7 +1358,7 @@ public class MainController implements Serializable{
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+     //   globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalCounterTestCasesNumber += resultsManager.getTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
@@ -1374,7 +1377,7 @@ public class MainController implements Serializable{
         settingManager.updateResultBoxes(settingGridPageWithWindows,"",resultBoxGridPageWindows,BoxGridPageWindowsResult);
         settingManager.updateResultBoxes(settingGridPageFillIns,"",resultBoxGridPageFillIns,BoxGridPageFillInsResult);
         settingManager.updateResultBoxes(settingBrandPage,"",resultBoxBrandPage,BoxBrandPageResult);
-        settingManager.updateResultBoxes(settingLucenePage,"",resultBoxLucenePage,BoxLucenePageResult);
+      //  settingManager.updateResultBoxes(settingLucenePage,"",resultBoxLucenePage,BoxLucenePageResult);
         settingManager.updateResultBoxes(settingMainMenuOnHomePage,"", resultBoxMainMenuOnHomePage, BoxMainMenuOnHomePageResult);
         settingManager.updateResultBoxes(settingDetailPage,"",resultBoxDetailPage,BoxDetailPageResult);
         settingManager.updateResultBoxes(settingImageGrouping,"",resultBoxImageGrouping,BoxImageGroupingResult);
@@ -1396,7 +1399,7 @@ public class MainController implements Serializable{
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageWithWindows,gridPageWithWindowsController.gridPageWithWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingGridPageFillIns,gridPageWithFillInsController.gridPageWithFillInsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingBrandPage,brandOverviewController.brandPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
-        globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
+      //  globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingLucenePage,pageLuceneWithItemsController.lucenePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingMainMenuOnHomePage,mainMenuOnHomePageController.mainMenuCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingDetailPage,detailPageController.detailPageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));
         globalFailedTestCasesNumber += resultsManager.getPassedTestCasesNumber(settingImageGrouping,imageGroupingController.imageGroupingCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]));

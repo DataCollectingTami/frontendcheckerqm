@@ -263,6 +263,7 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.previousPage.button"))));
+                        String page2Url= webDriver.getCurrentUrl();
                         if (webDriver.getCurrentUrl().contains("-2")){
                             report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button appeared!");
                         }else {
@@ -286,8 +287,10 @@ public class DetailPageTest {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.items.price"))));
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("page.pageNumbers"))));
 
+                        String page1Url= webDriver.getCurrentUrl();
 
-                        if (!webDriver.getCurrentUrl().contains("-2")){
+                        //if (!webDriver.getCurrentUrl().contains("-")){
+                        if (page1Url != page2Url){
                             report.writeToFile(infoMessage, "Successful! Found pattern in URL and Previous Page Button disappeared!");
                             ChangeCheckBox.adjustStyle(true,"complete",PagingForwardBackward);
                         }else {

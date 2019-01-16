@@ -322,7 +322,7 @@ public class BecomeAPartnerPageTest {
                     try {
                         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Homepage.getProperty("partnerpage.dashboard.forgot.button"))));
                         webDriver.findElementByXPath(Homepage.getProperty("partnerpage.dashboard.forgot.button")).click();
-                        if (webDriver.getCurrentUrl().contains("reset-password")){
+                        if (webDriver.getCurrentUrl().contains("forgot-password")){
                             report.writeToFile(infoMessage, "User is redirected to a reset-password page ");
                             ChangeCheckBox.adjustStyle(true,"complete",LoginPartnerdashboard);
                         }else {

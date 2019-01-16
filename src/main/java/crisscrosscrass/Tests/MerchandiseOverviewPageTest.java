@@ -60,6 +60,8 @@ public class MerchandiseOverviewPageTest {
                             break;
                         }
                     }
+
+
                     boolean isInViewPort = (boolean)((JavascriptExecutor)webDriver).executeScript(
                             "var elem = arguments[0],                 " +
                                     "  box = elem.getBoundingClientRect(),    " +
@@ -78,7 +80,7 @@ public class MerchandiseOverviewPageTest {
                     }else {
                         ChangeCheckBox.adjustStyle(true,"nope",LettertoMerchandise);
                         report.writeToFile(infoMessage, "The letter \""+selectedLetter+"\" which was clicked appears on in user's pageview");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check Merchandise Page: The letter \""+selectedLetter+"\" was clicked but does not match letter on user's pageview", "FailAndravie");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check Merchandise Page: The letter \""+selectedLetter+"\" SHOULD match the letter on top of user's pageview", "FailAndReview");
                         boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "MerchandisePageLetterToMerchandise.png");
                         if (isSuccessful){
                             report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
@@ -194,22 +196,28 @@ public class MerchandiseOverviewPageTest {
                             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("merchandisepage.search.suggestions"))));
                             List<WebElement> AllMerchandiseSuggestions = webDriver.findElementsByXPath(Homepage.getProperty("merchandisepage.search.suggestions"));
                             report.writeToFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ");
+                            failedTestCases.writeToNamedFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ", "FailAndReview");
                             for (WebElement Merchandise : AllMerchandiseSuggestions){
                                 report.writeToFile(Merchandise.getText());
+                                failedTestCases.writeToNamedFile(Merchandise.getText(), "FailAndReview");
                             }
+
                             final String selectedSuggestionMerchandise = AllMerchandiseSuggestions.get(0).getText().trim();
                             AllMerchandiseSuggestions.get(0).click();
-                            if (webDriver.getCurrentUrl().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) | webDriver.getTitle().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) ){
+                            if (webDriver.getCurrentUrl().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) || webDriver.getTitle().toLowerCase().trim().contains(selectedSuggestionMerchandise.toLowerCase().trim()) ){
                                 report.writeToFile("Click on Suggestion \""+selectedSuggestionMerchandise.trim()+"\": ", "Successful! User is redirected to a page that contains \""+selectedSuggestionMerchandise.trim()+"\" ");
-                                ChangeCheckBox.adjustStyle(true,"complete",MerchandiseSearch);
-                            }else{
+
+                            }
+                            else{
                                 report.writeToFile("Click on Suggestion \""+selectedSuggestionMerchandise.trim()+"\": ", "Not successful! User is redirected to a page that NOT contains \""+selectedSuggestionMerchandise.trim()+"\" ");
                                 ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                                 failedTestCases.writeToNamedFile("Please check \""+selectedSuggestionMerchandise.trim()+"\": ", " User is redirected to a page that does NOT contain \""+selectedSuggestionMerchandise.trim()+"\" ", "FailAndReview");
                                 failedTestCases.writeToNamedFile("=================================TC 53","FailAndReview");
                             }
                             report.writeToFile("");
+                            ChangeCheckBox.adjustStyle(true,"complete",MerchandiseSearch);
                             webDriver.navigate().to(inputMerchandiseOverviewPageURL.getText().trim());
+
                         }catch (Exception noSuggestionsFound){
                             report.writeToFile(infoMessage, "Couldn't detect \"Suggestions\" for Merchandise Search \""+AllSearchQueries[i].trim()+"\" ");
                             ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
@@ -219,7 +227,6 @@ public class MerchandiseOverviewPageTest {
                             noSuggestionsFound.printStackTrace();
                         }
                     }
-                    ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);
                     report.writeToFile(infoMessage, "Complete!");
                 }catch (Exception gridPageIssue){
                     ChangeCheckBox.adjustStyle(true,"nope",MerchandiseSearch);

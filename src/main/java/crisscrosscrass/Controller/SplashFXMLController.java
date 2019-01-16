@@ -95,7 +95,7 @@ public class SplashFXMLController implements Initializable {
                                 properties.setProperty("inputGridPageURLWithWindows",controller.inputGridPageURLWithWindows.getText());
                                 properties.setProperty("inputGridPageURLWithFillIns",controller.inputGridPageURLWithFillIns.getText());
                                 properties.setProperty("inputBrandPageOverview",controller.inputBrandPageOverview.getText());
-                                properties.setProperty("inputLucenePage",controller.inputLucenePage.getText());
+                            //    properties.setProperty("inputLucenePage",controller.inputLucenePage.getText());
                                 properties.setProperty("inputAccountEmail",controller.inputAccountEmail.getText());
                                 properties.setProperty("inputAccountPassword",controller.inputAccountPassword.getText());
                                 properties.setProperty("inputPartnerShopPageURL",controller.inputPartnerShopPageURL.getText());

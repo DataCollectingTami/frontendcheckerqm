@@ -7,10 +7,11 @@ import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import crisscrosscrass.Tasks.WebdriverTab;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,7 +46,7 @@ public class HomepageTest {
                     //use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
                     for (int i = 0; i < CategoryLinksLeftSideMenu.size(); i++) {
                         webDriver.switchTo().window(tabs.get(0));
-                        boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"), CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim());
+                        boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").toLowerCase().trim());
                         if (isSuccessful) {
                             report.writeToFile("TEST CategoryLinksLeftSideMenu " + i + ": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                         } else {
