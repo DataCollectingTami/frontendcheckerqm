@@ -159,7 +159,7 @@ public class GridPageTestWithFillIns {
 
                             }else {
                                 report.writeToFile("Checking Fill Ins: ", "Tested URL \""+ urlLocationBefore +"\" NOT successfully!");
-                                failedTestCases.writeToNamedFile("Checking Grid Page Fill Ins: ", "Please check fill ins functionality: Tested URL \""+ urlLocationBefore +"\" NOT successfully! ", "FailAndReview");
+                                failedTestCases.writeToNamedFile("Checking Grid Page Fill Ins: ", "Please check if tested URL \""+ urlLocationBefore +"\" is related to Fill-in Page ", "FailAndReview");
                                 failedTestCases.writeToNamedFile("=================================TC 19","FailAndReview");
                                 ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
                             }

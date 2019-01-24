@@ -25,7 +25,7 @@ public class GridPageXPathElements {
     private static Properties Homepage;
     private static String countrieSelection = "DE";
     private static String locator;
-    private static String gridUrl = "https://www.shopalike.cz/obleceni/sleva/obchod-boardstar/";
+    private static String gridUrl = "https://taschen.ladenzeile.de/damen/";
     private static String gridFIUrl = "https://www.shopalike.es/hogar/bano/sale/beige/a-rayas/";
     WebElement element;
 
@@ -483,6 +483,7 @@ public class GridPageXPathElements {
         driver.manage().window().maximize();
         driver.navigate().to(gridUrl);
         //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+
         try {
             element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
         } catch (Exception xpathNotFound) {
@@ -551,7 +552,7 @@ public class GridPageXPathElements {
         driver.manage().window().maximize();
         driver.navigate().to(gridUrl);
         //driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        driver.findElementByXPath(Homepage.getProperty("page.sidebar.showMoreTags.button")).click();
+        driver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))).click();
         try {
             element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
         } catch (Exception xpathNotFound) {

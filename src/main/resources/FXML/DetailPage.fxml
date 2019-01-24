@@ -8,6 +8,6 @@
         <JFXCheckBox fx:id="SwitchTabsInDetailPage" text="Switch Tabs in Detail Page" />
         <JFXCheckBox fx:id="SimilarProductsClickOut" text="Similar Products Click Out" />
         <JFXCheckBox fx:id="PagingForwardBackward" text="Paging - Forward/Backward" />
-        <JFXCheckBox fx:id="JumpToNonExistingPage" text="Jump to non-existing page" />
+        <JFXCheckBox fx:id="JumpToNonExistingPage" text="Click on category to leave Detail Page" />
     </children>
 </VBox>
