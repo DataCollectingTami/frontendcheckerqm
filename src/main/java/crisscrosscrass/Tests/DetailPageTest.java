@@ -56,11 +56,13 @@ public class DetailPageTest {
                             Thread.sleep(100);
                             js.executeScript("window.scrollBy(0,-400)");
                         }
+
                         List<WebElement> detailPageTabs = webDriver.findElementsByXPath(Homepage.getProperty("detailpage.tabs"));
-                        detailPageTabs.get(1).click();
+                        detailPageTabs.get(0).click();
 
                         //wait for new Items in Second Tab
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='moreProducts-style']/div[3]/div[1]/div/div")));
+                        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='moreProducts-style']/div[3]/div[1]/div/div")));
+                        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.items.info.icon"))));
 
                         ChangeCheckBox.adjustStyle(true,"complete",SwitchTabsInDetailPage);
                         report.writeToFile(infoMessage, "Complete!");

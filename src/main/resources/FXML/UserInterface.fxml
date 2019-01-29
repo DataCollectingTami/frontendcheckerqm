@@ -348,7 +348,7 @@
                                           <FontAwesomeIconView fx:id="infoBrandTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="95.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                                      <!--     <FontAwesomeIconView fx:id="infoLuceneTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="5" />  -->
                                           <FontAwesomeIconView fx:id="infoOnMainMenuTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="135.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                          <FontAwesomeIconView fx:id="infoDetailPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <FontAwesomeIconView fx:id="infoDetailPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                           <FontAwesomeIconView fx:id="infoImageGroupingTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="175.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                                           <FontAwesomeIconView fx:id="infoFavoritePageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="307.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                                           <FontAwesomeIconView fx:id="infoPartnerShopPageTest" fill="#45818e" glyphName="QUESTION_CIRCLE" layoutX="640.0" layoutY="215.0" size="20" wrappingWidth="17.85714292526245" GridPane.columnIndex="5" />
@@ -433,7 +433,7 @@
                               </HBox>
                               <HBox fx:id="ElementGridPageWithoutWindowBox" alignment="CENTER_RIGHT" GridPane.rowIndex="2">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwihtoutWindows" wrappingWidth="185.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GridPageURLwithoutWindows" wrappingWidth="185.0" />
                                     <TextField fx:id="inputGridPageURL" focusTraversable="false" prefWidth="350.0" text="https://www.ladenzeile.de/mode/" />
                                  </children>
                               </HBox>

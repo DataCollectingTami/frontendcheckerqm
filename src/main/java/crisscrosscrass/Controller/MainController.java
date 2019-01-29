@@ -549,7 +549,7 @@ public class MainController implements Serializable{
                             gridPageTest.checkingSwitchFromSmallToLargeImages(webDriver,report,js,gridPageNoWindowsController.switchFromSmallToLarge,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingPagingForwardBackward(webDriver,report,js,gridPageNoWindowsController.pagingForwardBackward,inputGridPageURL,statusInfo,inputSearch, Homepage);
 
-                            // not used* gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch, Homepage);
+                            //not*used*gridPageTest.checkingProductView300(webDriver,report,js,gridPageNoWindowsController.productView300,inputGridPageURL,statusInfo,inputSearch, Homepage);
 
                             gridPageTest.checkingDeeperStyle(webDriver,report,js,gridPageNoWindowsController.deeperStyle,inputGridPageURL,statusInfo,inputSearch, Homepage);
                             gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
@@ -1319,14 +1319,14 @@ public class MainController implements Serializable{
         settingManager.updateSettingControlls(settingGridPageWithWindows,tabGridPageWithWindows);
         settingManager.updateSettingControlls(settingGridPageFillIns,tabGridPageFillIns);
         settingManager.updateSettingControlls(settingBrandPage,tabBrandPage);
-      //  settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
+      //settingManager.updateSettingControlls(settingLucenePage,tabLucenePage);
         settingManager.updateSettingControlls(settingMainMenuOnHomePage, tabMainMenuOnHomePage);
         settingManager.updateSettingControlls(settingDetailPage,tabDetailPage);
         settingManager.updateSettingControlls(settingImageGrouping,tabImageGrouping);
         settingManager.updateSettingControlls(settingFavoritePage,tabFavoritePage);
         settingManager.updateSettingControlls(settingPartnerShopPage,tabPartnerShopPage);
         settingManager.updateSettingControlls(settingBecomeAPartnerPage,tabBecomeAPartnerPage);
-       // settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
+       //settingManager.updateSettingControlls(settingAffiliateProgram,tabAffiliateProgram);
         settingManager.updateSettingControlls(settingMerchandiseOverviewPage,tabMerchandiseOverviewPage);
         if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
             ElementGridPageWithoutWindowBox.setVisible(true);
