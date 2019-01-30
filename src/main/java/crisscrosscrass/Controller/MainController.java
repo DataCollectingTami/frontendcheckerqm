@@ -75,7 +75,7 @@ public class MainController implements Serializable{
     //@FXML JFXCheckBox settingAffiliateProgram;
     @FXML JFXCheckBox settingMerchandiseOverviewPage;
     //Element Boxes to hide
-    @FXML HBox ElementLuceneBox;
+    //@FXML HBox ElementLuceneBox;
     @FXML VBox ElementLoginBox;
     @FXML HBox ElementTextSearchSuggestionBox;
     @FXML HBox ElementShopSearchBox;
@@ -98,7 +98,7 @@ public class MainController implements Serializable{
     @FXML TextField inputGridPageURLWithWindows;
     @FXML TextField inputGridPageURLWithFillIns;
     @FXML TextField inputBrandPageOverview;
-    @FXML TextField inputLucenePage;
+    //@FXML TextField inputLucenePage;
     @FXML TextField inputPartnerShopPageURL;
     @FXML TextField inputPartnerShopSearch;
     @FXML TextField inputBecomeAPartnerPageURL;
@@ -724,6 +724,8 @@ public class MainController implements Serializable{
                             settingManager.updateResultBoxes(settingBrandPage,"progress",resultBoxBrandPage,BoxBrandPageResult);
                             BrandPageTest brandPageTest = new BrandPageTest();
                             brandPageTest.checkingBrandsWithoutLogo(webDriver,report,js,brandOverviewController.brandsWithoutLogo,inputBrandPageOverview,statusInfo,inputSearch, Homepage);
+                            brandPageTest.checkingBrandSearchAndSeries(webDriver,report,js,brandOverviewController.brandSearchAndSeries,inputBrandPageOverview,inputGridPageKeyword,statusInfo,inputSearch, Homepage);
+
                         }catch (Exception noBrandWorking){
                             noBrandWorking.printStackTrace();
                         }
@@ -1097,6 +1099,7 @@ public class MainController implements Serializable{
         settingBecomeAPartnerPage.setSelected(true);
         //settingAffiliateProgram.setSelected(true);
         settingMerchandiseOverviewPage.setSelected(true);
+        settingBrandPage.setSelected(true);
         updateCheckerTabs();
         changeColorForStartButton();
     }
@@ -1171,7 +1174,17 @@ public class MainController implements Serializable{
                     ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
                 }
             }
-            if (settingGridPageWithWindows.isSelected()) {
+            // TRYING TO ADD SEPARATE VALIDATION FOR de-- I THINK IT MIGHT BE RELATED TO MAIN LOCATION SET IN COUNTRIES- how to add if DE is selected?
+            if (settingGridPage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString()=="DE" | settingImageGrouping.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() == "DE" | settingDetailPage.isSelected()| settingFavoritePage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() == "DE"){
+                if (inputGridPageURL.getText().length() < 1) {
+                    ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
+                }
+                if (!inputGridPageURL.getText().contains(".de")){
+                 ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
+                 }
+            }
+            ///////////////////////////
+            else if (settingGridPageWithWindows.isSelected()) {
                 if (inputGridPageURLWithWindows.getText().length() < 1) {
                     ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
                 }

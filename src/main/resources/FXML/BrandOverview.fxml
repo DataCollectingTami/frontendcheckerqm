@@ -7,4 +7,6 @@
 <VBox fx:id="brandPageCheckBoxCollection" style="-fx-background-color: white;" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
       fx:controller="crisscrosscrass.Controller.BrandOverviewController">
     <JFXCheckBox fx:id="brandsWithoutLogo" text="Brands without Logo"/>
+    <JFXCheckBox fx:id="brandSearchAndSeries" text="Brand search bar and Series Page"/>
+
 </VBox>

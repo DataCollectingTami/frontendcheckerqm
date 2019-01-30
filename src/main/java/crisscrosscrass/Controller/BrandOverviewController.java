@@ -7,4 +7,5 @@ import javafx.scene.layout.VBox;
 public class BrandOverviewController {
     @FXML VBox brandPageCheckBoxCollection;
     @FXML JFXCheckBox brandsWithoutLogo;
+    @FXML JFXCheckBox brandSearchAndSeries;
 }

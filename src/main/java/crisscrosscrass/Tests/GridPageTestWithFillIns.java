@@ -114,7 +114,7 @@ public class GridPageTestWithFillIns {
 
     /** test adjusted */
 
-    public void checkingShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
+    public void checkingShowAllFillInPageOld2(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
         failedTestCases.writeToNamedFile("CHECKING GRID PAGE WITH FILL-INS", "FailAndReview");
         final String infoMessage = showAllFillInPage.getText();
         ChangeCheckBox.adjustStyle(false,"progress",showAllFillInPage);
@@ -212,4 +212,108 @@ public class GridPageTestWithFillIns {
     }
     /**end of test adjusted*/
 
+    /**Change case o compare name of tag to H1 and H2*/
+    public void checkingShowAllFillInPage(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox showAllFillInPage, TextField inputGridPageURLWithFillIns, Text statusInfo, TextField inputSearch, Properties Homepage){
+        failedTestCases.writeToNamedFile("CHECKING GRID PAGE WITH FILL-INS", "FailAndReview");
+        final String infoMessage = showAllFillInPage.getText();
+        ChangeCheckBox.adjustStyle(false,"progress",showAllFillInPage);
+        Platform.runLater(() -> {
+            statusInfo.setText(""+infoMessage+"...");
+        });
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(0));
+            try {
+                webDriver.navigate().to(inputGridPageURLWithFillIns.getText().trim());
+                WebDriverWait wait = new WebDriverWait(webDriver, 10);
+                try{
+                    boolean isAvailable = webDriver.findElementByXPath(Homepage.getProperty("page.grid.fillInMore")) != null;
+                    List<WebElement> FillInsMore = webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.fillInMore")));
+                    List<WebElement> FillInsAll = webDriver.findElements(By.xpath(Homepage.getProperty("page.grid.fillInAll")));
+                    ArrayList LinksMore = new ArrayList();
+                    ArrayList LinksAll = new ArrayList();
+
+                    for (WebElement FillIns : FillInsMore){
+                     LinksMore.add(FillIns.getAttribute("href").trim().toLowerCase());
+                     }
+                    for (WebElement FillAll : FillInsAll){
+                        LinksAll.add(FillAll.getAttribute("href").trim().toLowerCase());
+                    }
+
+                    for (int i = 0 ; i < FillInsAll.size(); i++){
+                        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+                        tabs = new ArrayList<>(webDriver.getWindowHandles());
+                        try{
+                            webDriver.switchTo().window(tabs.get(1)); //switches to new tab
+                            webDriver.get(LinksMore.get(i).toString());
+                            String seeMore= webDriver.getCurrentUrl();
+
+                            final String urlLocationBefore = webDriver.getCurrentUrl();
+                            ((JavascriptExecutor)webDriver).executeScript("window.open()");
+                            tabs = new ArrayList<>(webDriver.getWindowHandles());
+
+                            webDriver.switchTo().window(tabs.get(2)); //switches to new tab
+                            webDriver.get(LinksAll.get(i).toString());
+                            String seeAll= webDriver.getCurrentUrl();
+
+
+                            if (seeMore.equals(seeAll)){
+                                report.writeToFile("Checking Fill Ins: ", "Tested URL \""+ urlLocationBefore +"\" successfully!");
+                                ChangeCheckBox.adjustStyle(true,"complete",showAllFillInPage);
+
+                            }else {
+                                report.writeToFile("Checking Fill Ins: ", "Tested URL \""+ urlLocationBefore +"\" NOT successfully!");
+                                failedTestCases.writeToNamedFile("Checking Grid Page Fill Ins: ", "Please check if tested URL \""+ urlLocationBefore +"\" is related to Fill-in Page ", "FailAndReview");
+                                failedTestCases.writeToNamedFile("=================================TC 19","FailAndReview");
+                                ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
+                            }
+
+                            webDriver.switchTo().window(tabs.get(2)).close();
+                            webDriver.switchTo().window(tabs.get(1)).close();
+                            webDriver.switchTo().window(tabs.get(0));
+                        }catch (Exception errorWhileLoop){
+                            tabs = new ArrayList<>(webDriver.getWindowHandles());
+                            webDriver.switchTo().window(tabs.get(0));
+                            webDriver.navigate().to(inputGridPageURLWithFillIns.getText().trim());
+                            errorWhileLoop.printStackTrace();
+                            break;
+                        }
+
+                    }
+                    report.writeToFile(infoMessage, "Complete!");
+                }catch (Exception gridPageIssue){
+                    ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
+                    boolean isSuccessful = ScreenshotViaWebDriver.printScreen(webDriver, "GridPageWithFillInsErrorPagingWindows.png");
+                    if (isSuccessful){
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot successful!");
+                        failedTestCases.writeToNamedFile("For more information on the error, see GridPageWithFillInsErrorPagingWindows:", "Screenshot successful!", "FailAndReview");
+                    }else {
+                        report.writeToFile("GridPage Error Screenshot: ", "Screenshot not successful!");
+                        failedTestCases.writeToNamedFile("Grid page with fill-ins screenshot", "Screenshot not successful!", "FailAndReview");
+                    }
+                    webDriver.navigate().to(inputSearch.getText().trim());
+                    report.writeToFile(infoMessage, "Could find any FillIns-Boxes");
+                    failedTestCases.writeToNamedFile(infoMessage, "Please check: Could not find any FillIns-Boxes", "FailAndReview");
+                    failedTestCases.writeToNamedFile("=================================TC 19","FailAndReview");
+                    gridPageIssue.printStackTrace();
+                }
+            }catch (Exception noRequestedSiteFound){
+                ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
+                webDriver.navigate().to(inputSearch.getText().trim());
+                report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
+                failedTestCases.writeToNamedFile(infoMessage, "Please check: Couldn't navigate to FillIns-Boxes", "FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 19","FailAndReview");
+                noRequestedSiteFound.printStackTrace();
+            }
+        }catch (Exception noBrowserWorking){
+            ChangeCheckBox.adjustStyle(true,"nope",showAllFillInPage);
+            report.writeToFile(infoMessage, "unable to check! Browser not responding");
+            failedTestCases.writeToNamedFile(infoMessage, "Please check: Browser not responding", "FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 19","FailAndReview");
+            noBrowserWorking.printStackTrace();
+        }
+        report.writeToFile("=================================", "");
+    }
+
+/**end of test h1 and h2*/
 }
