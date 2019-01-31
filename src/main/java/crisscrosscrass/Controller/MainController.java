@@ -555,7 +555,7 @@ public class MainController implements Serializable{
                             gridPageTest.checkingStyleBoxOpenClose(webDriver,report,js,gridPageNoWindowsController.styleBoxOpenClose,inputGridPageURL,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
                             gridPageTest.checkingFilterApply(webDriver,report,js,gridPageNoWindowsController.filtersApply,inputGridPageURL,statusInfo,inputSearch,Homepage,isSuccessful,isAvailable,checkingSalesPriceFilter,checkingGenderFilter,checkingColorFilter,checkingBrandFilter,checkingMerchandiseFilter);
                             gridPageTest.checkingSearchBoxInBrandFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInBrandFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
-                            gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputGridPageKeyword,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
+                            gridPageTest.checkingSearchBoxInShopFilter(webDriver,report,js,gridPageNoWindowsController.searchBoxInShopFilter,inputGridPageURL,inputPartnerShopSearch,statusInfo,inputSearch,inputEmailAdress,xpathPattern1,xpathPattern2,Homepage,isSuccessful,isAvailable);
 
                             //VisualResults visualResults = new VisualResults();
                             //Platform.runLater(() -> visualResults.createPieChart(PlaceForPieCharts,gridPageNoWindowsController.GridPageNoWindowsCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),"GridPageTest"));
@@ -1166,7 +1166,8 @@ public class MainController implements Serializable{
                     ValidationsErrors.append("- the inputGridPageKeyword cannot be empty\n");
                 }
             }
-            if (settingGridPage.isSelected() | settingImageGrouping.isSelected() | settingDetailPage.isSelected()| settingFavoritePage.isSelected()){
+            // ADD SEPARATE VALIDATION FOR de- Grid Page
+            if (settingGridPage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() != "DE"| settingImageGrouping.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() != "DE"| settingDetailPage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() != "DE"| settingFavoritePage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() != "DE"){
                 if (inputGridPageURL.getText().length() < 1) {
                     ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
                 }
@@ -1174,17 +1175,17 @@ public class MainController implements Serializable{
                     ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
                 }
             }
-            // TRYING TO ADD SEPARATE VALIDATION FOR de-- I THINK IT MIGHT BE RELATED TO MAIN LOCATION SET IN COUNTRIES- how to add if DE is selected?
-            if (settingGridPage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString()=="DE" | settingImageGrouping.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() == "DE" | settingDetailPage.isSelected()| settingFavoritePage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() == "DE"){
+
+            else if (settingGridPage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE") | settingImageGrouping.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE") | settingDetailPage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")| settingFavoritePage.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
                 if (inputGridPageURL.getText().length() < 1) {
                     ValidationsErrors.append("- the inputGridPageURL cannot be empty\n");
                 }
-                if (!inputGridPageURL.getText().contains(".de")){
+                if (!inputGridPageURL.getText().contains("ladenzeile.de")){
                  ValidationsErrors.append("- the inputGridPageURL cannot be unrelated to selected Country\n");
                  }
             }
-            ///////////////////////////
-            else if (settingGridPageWithWindows.isSelected()) {
+            // ADD SEPARATE VALIDATION FOR DE- GRID WITH WINDOWS
+            if (settingGridPageWithWindows.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString() != "DE") {
                 if (inputGridPageURLWithWindows.getText().length() < 1) {
                     ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
                 }
@@ -1192,6 +1193,16 @@ public class MainController implements Serializable{
                     ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be unrelated to selected Country\n");
                 }
             }
+
+            else if (settingGridPageWithWindows.isSelected() & countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")) {
+                if (inputGridPageURLWithWindows.getText().length() < 1) {
+                    ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be empty\n");
+                }
+                if (!inputGridPageURLWithWindows.getText().contains("ladenzeile.de")) {
+                    ValidationsErrors.append("- the inputGridPageURLWithWindows cannot be unrelated to selected Country\n");
+                }
+            }
+            //////////////////////////
             if (settingGridPageFillIns.isSelected()) {
                 if (inputGridPageURLWithFillIns.getText().length() < 1) {
                     ValidationsErrors.append("- the inputGridPageURLWithFillIns cannot be empty\n");
@@ -1286,6 +1297,13 @@ public class MainController implements Serializable{
                     inputGridPageURLWithWindows.setStyle(failureStyleSettings);
                 }else{
                     inputGridPageURLWithWindows.setStyle(successStyleSettings);
+                }
+            }
+            if (settingBrandPage.isSelected()) {
+                if (inputGridPageKeyword.getText().length() < 1){
+                    inputGridPageKeyword.setStyle(failureStyleSettings);
+                }else{
+                    inputGridPageKeyword.setStyle(successStyleSettings);
                 }
             }
             if (settingGridPageFillIns.isSelected()) {

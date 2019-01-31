@@ -1413,7 +1413,7 @@ public class GridPageTest {
         }
         report.writeToFile("=================================", "");
     }
-    public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInShopFilter, TextField inputGridPageURL, TextField inputGridPageKeyword,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
+    public void checkingSearchBoxInShopFilter(ChromeDriver webDriver, Report report, JavascriptExecutor js, JFXCheckBox searchBoxInShopFilter, TextField inputGridPageURL, TextField inputPartnerShopSearch,Text statusInfo, TextField inputSearch, TextField inputEmailAdress, String xpathPattern1, String xpathPattern2, Properties Homepage, boolean isSuccessful, boolean isAvailable){
         final String infoMessage = searchBoxInShopFilter.getText();
         ChangeCheckBox.adjustStyle(false,"progress",searchBoxInShopFilter);
         Platform.runLater(() -> {
@@ -1439,17 +1439,17 @@ public class GridPageTest {
                         ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.shop.input"))));
                         WebElement element = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.input")));
-                        element.sendKeys(inputGridPageKeyword.getText().trim()); // Enter searchAliases without pressing ENTER
+                        element.sendKeys(inputPartnerShopSearch.getText().trim()); // Enter searchAliases without pressing ENTER
                         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.sidebar.shop.suggestions"))));
                         final String urlLocationBefore = webDriver.getCurrentUrl();
                         webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.shop.suggestions"))).click();
-                        if (urlLocationBefore != webDriver.getCurrentUrl() && webDriver.getCurrentUrl().contains(inputGridPageKeyword.getText().trim().toLowerCase())){
+                        if (urlLocationBefore != webDriver.getCurrentUrl() && webDriver.getCurrentUrl().contains(inputPartnerShopSearch.getText().trim().toLowerCase())){
                             ChangeCheckBox.adjustStyle(true,"complete",searchBoxInShopFilter);
-                            report.writeToFile(infoMessage, "Successful! Redirected to a functioning page containing \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" in the URL");
+                            report.writeToFile(infoMessage, "Successful! Redirected to a functioning page containing \""+inputPartnerShopSearch.getText().trim().toLowerCase()+"\" in the URL");
                         }else{
                             ChangeCheckBox.adjustStyle(true,"nope",searchBoxInShopFilter);
-                            report.writeToFile(infoMessage, "Not successful! URL is the same or Keyword \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" couldn't be founded in URL");
-                            failedTestCases.writeToNamedFile(infoMessage, "Please check shop filter box: URL of shop is not the same or Keyword \""+inputGridPageKeyword.getText().trim().toLowerCase()+"\" couldn't be founded in URL", "FailAndReview");
+                            report.writeToFile(infoMessage, "Not successful! URL is the same or Keyword \""+inputPartnerShopSearch.getText().trim().toLowerCase()+"\" couldn't be founded in URL");
+                            failedTestCases.writeToNamedFile(infoMessage, "Please check shop filter box: URL of shop is not the same or Keyword \""+inputPartnerShopSearch.getText().trim().toLowerCase()+"\" couldn't be founded in URL", "FailAndReview");
                             failedTestCases.writeToNamedFile("=================================TC 17","FailAndReview");
                         }
 

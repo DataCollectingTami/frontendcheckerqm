@@ -474,7 +474,7 @@
                               </HBox>
                               <HBox fx:id="ElementGridPageSearchBox" alignment="CENTER_RIGHT" GridPane.rowIndex="3">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand | Shop Keyword" wrappingWidth="185.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Search Box" wrappingWidth="185.0" />
                                     <TextField fx:id="inputGridPageKeyword" focusTraversable="false" prefWidth="350.0" text="nike" />
                                  </children>
                               </HBox>

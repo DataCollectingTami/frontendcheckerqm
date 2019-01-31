@@ -5,8 +5,8 @@ public enum InfoText {
             " If you enter more than one keyword, use pipe as separator\n"),
     GridPageURL("Grid Page URL without Windows","This field will be used to test a gridpage without Windows\n"),
     GridPageURLWithWindows("Grid Page URL with Windows","This field will be used to test a gridpage with Windows\n"),
-    BrandShopKeyword("Brand | Shop Keyword","This field will be used to test brand and shop search boxes. \n" +
-            "Pick a single keyword, so it has to be a Brand that is also a Shop. \n"),
+    BrandShopKeyword("Brand Keyword","This field will be used to test brand search boxes. \n" +
+            "Pick a brand which has series so that Series Filter Box can also be tested. \n" ),
     FilterText("Filer Buttons","This field will be used to test a gridpage with Windows\n"),
     GridPageWitthFillIns("Grid Page URL with FillIns","This field will be used to test a gridpage with Fill-ins\n"),
     exclamationMarkGridPageURLwithoutWindows("Info","- Grid page has to have a style box with more than 6 tags\n (or it has to be a tag with at least 6 children)\n" +
@@ -14,7 +14,7 @@ public enum InfoText {
             "- Grid page has to contain items from chosen brands and shops\n"),
     LucenePageSearch("Keyword trigger Lucene Page","This keyword will be used to trigger a Lucene page\n " +
             "and perform all the Lucene tests. \n"),
-    ShopSearchBox("Shop Search Box","This field will be used to test search on Partnershop page.\n " +
+    ShopSearchBox("Shop Search Box","This field will be used to test search on Partnershop page and Grid Page.\n " +
             "If you enter more than one Shop, use pipe as separator.\n"),
     MerchandiseSearch("Merchandise Search Box","This field will be used to test search on Merchandise page.\n " +
             "If you enter more than one Merchandise, use pipe as separator.\n");
