@@ -362,21 +362,21 @@ public class MainController implements Serializable{
      //   ElementLuceneBox.visibleProperty().bind(settingLucenePage.selectedProperty());
         ElementLoginBox.visibleProperty().bind(settingFavoritePage.selectedProperty());
         ElementTextSearchSuggestionBox.visibleProperty().bind(settingHomepage.selectedProperty());
-        ElementShopSearchBox.visibleProperty().bind(settingPartnerShopPage.selectedProperty());
+        //updated-checker-ElementShopSearchBox.visibleProperty().bind(settingPartnerShopPage.selectedProperty());
         ElementMerchandiseSearchBox.visibleProperty().bind(settingMerchandiseOverviewPage.selectedProperty());
-        ElementGridPageSearchBox.visibleProperty().bind(settingGridPage.selectedProperty());
+        //ElementGridPageSearchBox.visibleProperty().bind(settingGridPage.selectedProperty());
         ElementFiltersBox.visibleProperty().bind(settingGridPage.selectedProperty());
         ElementGridPageWithWindowBox.visibleProperty().bind(settingGridPageWithWindows.selectedProperty());
         ElementGridPageWithFillInsBox.visibleProperty().bind(settingGridPageFillIns.selectedProperty());
         infoInputFieldTextSearch.visibleProperty().bind(ElementTextSearchSuggestionBox.visibleProperty());
       //  infoInputFieldLucenePageSearch.visibleProperty().bind(ElementLuceneBox.visibleProperty());
         infoInputFieldGridPageWitthFillIns.visibleProperty().bind(ElementGridPageWithFillInsBox.visibleProperty());
-        infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
+        //updated.checker-infoInputFieldBrandShopKeyword.visibleProperty().bind(ElementGridPageSearchBox.visibleProperty());
         infoInputFieldGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
         infoInputFieldGridPageURLwithWindows.visibleProperty().bind(ElementGridPageWithWindowBox.visibleProperty());
         exclamationMarkGridPageURLwithoutWindows.visibleProperty().bind(ElementGridPageWithoutWindowBox.visibleProperty());
         infoInputFieldMerchandiseSearch.visibleProperty().bind(ElementMerchandiseSearchBox.visibleProperty());
-        infoInputFieldShopSearch.visibleProperty().bind(ElementShopSearchBox.visibleProperty());
+        //updated-checker-infoInputFieldShopSearch.visibleProperty().bind(ElementShopSearchBox.visibleProperty());
     }
     private void addListenerToSettingCheckBoxes() {
         settingHomepage.setOnAction(event -> {updateCheckerTabs(); changeColorForStartButton();});
@@ -1364,8 +1364,23 @@ public class MainController implements Serializable{
         }else{
             ElementGridPageWithoutWindowBox.setVisible(false);
         }
+        if (settingBrandPage.isSelected() | settingGridPage.isSelected()){
+            infoInputFieldBrandShopKeyword.setVisible(true);
+            ElementGridPageSearchBox.setVisible(true);
+        } else {
+            infoInputFieldBrandShopKeyword.setVisible(false);
+            ElementGridPageSearchBox.setVisible(false);
+        }
+        if (settingGridPage.isSelected() | settingPartnerShopPage.isSelected()){
+            ElementShopSearchBox.setVisible(true);
+            infoInputFieldShopSearch.setVisible(true);
+        }else{
+            ElementShopSearchBox.setVisible(false);
+            infoInputFieldShopSearch.setVisible(false);
+        }
         updateTestCasesGlobalCounter();
         //settingManager.setValidationColor(settingFavoritePage,inputAccountEmail);
+
     }
 
     private void updateTestCasesGlobalCounter(){
