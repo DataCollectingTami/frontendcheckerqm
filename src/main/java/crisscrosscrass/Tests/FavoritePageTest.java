@@ -274,16 +274,16 @@ public void checkingDeletingFromList(ChromeDriver webDriver, Report report, Java
             WebDriverWait wait = new WebDriverWait(webDriver, 10);
             try{
 
-                int FavoriteItemsNumbers = webDriver.findElements(By.xpath(Homepage.getProperty("page.items.favorite.final"))).size();
+                int FavoriteItemsNumbers = webDriver.findElements(By.xpath(Homepage.getProperty("page.items.favorite.delete"))).size();
 
-                List<WebElement> FavoriteListElementsDelete = webDriver.findElementsByXPath(Homepage.getProperty("page.items.favorite.final"));
+                List<WebElement> FavoriteListElementsDelete = webDriver.findElementsByXPath(Homepage.getProperty("page.items.favorite.delete"));
 
 
                  for (int i = 0; i <= 5; i++) {
 
                  FavoriteListElementsDelete.get(i).click();}
 
-                 int FavoriteItemsNumberDelete = webDriver.findElements(By.xpath(Homepage.getProperty("page.items.favorite.final"))).size();
+                 int FavoriteItemsNumberDelete = webDriver.findElements(By.xpath(Homepage.getProperty("page.items.favorite.delete"))).size();
                  if(FavoriteItemsNumberDelete < FavoriteItemsNumbers) {
                  ChangeCheckBox.adjustStyle(true,"complete",DeletingFromList);
                      report.writeToFile("Checking Favorite Page: ", "Items deleted successfully!");
@@ -291,7 +291,7 @@ public void checkingDeletingFromList(ChromeDriver webDriver, Report report, Java
                  }else{
                  ChangeCheckBox.adjustStyle(true,"nope",DeletingFromList);
                  failedTestCases.writeToNamedFile("Please check Favorite Page: ", "Items were not successfully deleted", "FailAndReview");
-                 failedTestCases.writeToNamedFile("=================================TC 58","FailAndReview");
+                 failedTestCases.writeToNamedFile("=================================TC 60","FailAndReview");
                  }
 
 
@@ -301,7 +301,7 @@ public void checkingDeletingFromList(ChromeDriver webDriver, Report report, Java
                 webDriver.navigate().to(inputGridPageURL.getText().trim());
                 report.writeToFile(infoMessage, "Couldn't detect Favorite Lists");
                 failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't find items in favorite page", "FailAndReview");
-                failedTestCases.writeToNamedFile("=================================TC 58&59 sorting","FailAndReview");
+                failedTestCases.writeToNamedFile("=================================TC 60","FailAndReview");
                 gridPageIssue.printStackTrace();
             }
         }catch (Exception noRequestedSiteFound){
@@ -309,14 +309,14 @@ public void checkingDeletingFromList(ChromeDriver webDriver, Report report, Java
             webDriver.navigate().to(inputGridPageURL.getText().trim());
             report.writeToFile(infoMessage, "Couldn't navigate to requested Site!");
             failedTestCases.writeToNamedFile(infoMessage, "Please check: couldn't navigate to Favorite Page", "FailAndReview");
-            failedTestCases.writeToNamedFile("=================================TC 58&59","FailAndReview");
+            failedTestCases.writeToNamedFile("=================================TC 60","FailAndReview");
             noRequestedSiteFound.printStackTrace();
         }
     }catch (Exception noBrowserWorking){
         ChangeCheckBox.adjustStyle(true,"nope",DeletingFromList);
         report.writeToFile(infoMessage, "unable to check! Browser not responding");
         failedTestCases.writeToNamedFile(infoMessage, "Please check Favorite List: browser not responding", "FailAndReview");
-        failedTestCases.writeToNamedFile("=================================TC 58&59","FailAndReview");
+        failedTestCases.writeToNamedFile("=================================TC 60","FailAndReview");
         noBrowserWorking.printStackTrace();
     }
 

@@ -316,7 +316,7 @@ public class BecomeAPartnerPageTest {
                     }else {
                         report.writeToFile(infoMessage, "User is redirected to a functioning page but not with Login ");
                         failedTestCases.writeToNamedFile(infoMessage, "Please check Partner Dashboard login Page: login seems to not be working");
-                        failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
+                        failedTestCases.writeToNamedFile("=================================TC 45.1","FailAndReview");
                     }
 
                     try {
@@ -328,7 +328,7 @@ public class BecomeAPartnerPageTest {
                         }else {
                             report.writeToFile(infoMessage, "User is redirected to a functioning page but not with Reset Password ");
                             failedTestCases.writeToNamedFile(infoMessage, "Please check: when re-setting password on Partner Dashboard log in, user is redirected to page which is not working", "FailAndReview");
-                            failedTestCases.writeToNamedFile("=================================TC 45","FailAndReview");
+                            failedTestCases.writeToNamedFile("=================================TC 45.2","FailAndReview");
                             ChangeCheckBox.adjustStyle(true,"nope",LoginPartnerdashboard);
                         }
                         report.writeToFile(infoMessage, "Complete");
@@ -547,7 +547,7 @@ public class BecomeAPartnerPageTest {
                         ChangeCheckBox.adjustStyle(true,"complete",DownloadPDFHelp);
                     }else {
                         report.writeToFile(infoMessage, "No functioning PDF appears");
-                        failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab on Become Partner page: no functioning PDF appears", "FailAndReview");
+                        failedTestCases.writeToNamedFile(infoMessage, "Please check Partner tab on Become Partner page: could not find a functioning PDF to download", "FailAndReview");
                         failedTestCases.writeToNamedFile("=================================TC 47","FailAndReview");
                         ChangeCheckBox.adjustStyle(true,"nope",DownloadPDFHelp);
                     }

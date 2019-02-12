@@ -46,8 +46,12 @@ public class HomepageTest {
                     //use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
                     for (int i = 0; i < CategoryLinksLeftSideMenu.size(); i++) {
                         webDriver.switchTo().window(tabs.get(0));
-                        boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").toLowerCase().trim());
-                        if (isSuccessful) {
+
+                        String menuLinkUrl = CategoryLinksLeftSideMenu.get(i).getAttribute("href").trim();
+                        String menuLinkName =CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").toLowerCase().trim();
+                        //boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").toLowerCase().trim());
+                        //if (isSuccessful) {
+                        if (menuLinkUrl.contains(menuLinkName)){
                             report.writeToFile("TEST CategoryLinksLeftSideMenu " + i + ": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                         } else {
                             report.writeToFile("unable to check! ", "couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
