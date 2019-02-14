@@ -196,7 +196,9 @@ public class MerchandiseOverviewPageTest {
                             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("merchandisepage.search.suggestions"))));
                             List<WebElement> AllMerchandiseSuggestions = webDriver.findElementsByXPath(Homepage.getProperty("merchandisepage.search.suggestions"));
                             report.writeToFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ");
+                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             failedTestCases.writeToNamedFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ", "FailAndReview");
+                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             for (WebElement Merchandise : AllMerchandiseSuggestions){
                                 report.writeToFile(Merchandise.getText());
                                 failedTestCases.writeToNamedFile(Merchandise.getText(), "FailAndReview");

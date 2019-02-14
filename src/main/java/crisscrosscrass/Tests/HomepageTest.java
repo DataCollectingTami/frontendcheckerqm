@@ -540,11 +540,15 @@ public class HomepageTest {
                             report.writeToFile(infoMessage+" for \""+ searchAliases[i].trim()+"\"");
                             failedTestCases.writeToNamedFile(infoMessage+" for \""+ searchAliases[i].trim()+"\"", "FailAndReview" );
                             report.writeToFile("Suggestions :");
+                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             failedTestCases.writeToNamedFile("Check Suggestions :", "FailAndReview");
+                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             for (int j = 0 ; j < searchAliasesTitles.size() ; j++){
                                 //System.out.println(searchAliasesTitles.get(j).getText() + "  | " + searchAliasesType.get(j).getText());
                                 report.writeToFile(searchAliasesTitles.get(j).getText()+" | "+searchAliasesType.get(j).getText() );
+
                                 failedTestCases.writeToNamedFile(searchAliasesTitles.get(j).getText()+" | "+searchAliasesType.get(j).getText(), "FailAndReview" );
+
                             }
                             report.writeToFile("");
                             element.submit();

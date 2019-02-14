@@ -132,7 +132,9 @@ public class BrandPageTest {
                         if(webDriver.findElements(By.xpath(Homepage.getProperty("brandpage.boxwrapper.top"))).size() > 0){
                             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("brandpage.boxwrapper.top"))));
                             List<WebElement> boxWrapperTop = webDriver.findElementsByXPath(Homepage.getProperty("brandpage.boxwrapper.top"));
+                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             failedTestCases.writeToNamedFile("==========Brands without Logo on Main Brand page:==========", "FailAndReview");
+                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             for (WebElement quickMenuItem : boxWrapperTop){
                                 report.writeToFile(quickMenuItem.getText());
                                 failedTestCases.writeToNamedFile(quickMenuItem.getText(), "FailAndReview");
