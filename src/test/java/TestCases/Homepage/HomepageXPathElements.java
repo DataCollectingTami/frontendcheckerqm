@@ -23,7 +23,7 @@ public class HomepageXPathElements {
     final static Logger logger = Logger.getLogger(HomepageXPathElements.class);
     private static ChromeDriver driver;
     private static Properties Homepage;
-    private static String countrieSelection = "DE";
+    private static String countrieSelection = "FR";
     private static String locator;
     WebElement element;
 
