@@ -1,22 +1,6 @@
 package TestCases.AffiliatePage;
 
-import crisscrosscrass.countries;
-import org.apache.log4j.Logger;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
+/** NO LONGER NEEDED
 
 public class AffiliateXPath {
         final static Logger logger = Logger.getLogger(AffiliateXPath.class);
@@ -94,3 +78,4 @@ public class AffiliateXPath {
     }
 
 
+*/

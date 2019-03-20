@@ -546,6 +546,39 @@ public class GridPageXPathElements {
     }
 
     @Test
+    public void checkSideBarStyle(){
+        locator = "page.sidebar.style";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkSideBarStyleHidden(){
+        locator = "page.sidebar.style.hidden";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridUrl);
+        driver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showMoreTags.button"))).click();
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
+
+    @Test
     public void checkSideBarShowLess(){
         locator = "page.sidebar.showLessTags.button";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());

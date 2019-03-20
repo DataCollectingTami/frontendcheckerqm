@@ -792,7 +792,6 @@ public class GridPageTest {
                         }
 
 
-
                         Point hoverItem = webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.showLessTags.button"))).getLocation();
                         ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                         ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
@@ -1218,14 +1217,16 @@ public class GridPageTest {
                                     webDriver.findElementByXPath(xPathMyFirstSelected).click();
                                     report.writeToFile(reportInfoCurrentFilterFromSidebar, "removed successfully!");
                                 }else {
-                                    report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove! Clicked Button but Frontend doesn't response!");
-                                    failedTestCases.writeToNamedFile(reportInfoCurrentFilterFromSidebar, "Please check filters- unable to remove from side menu! Clicked Button but Frontend doesn't response!", "FailAndReview");
-
+                                    report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove! Clicked Button but Frontend doesn't respond!");
+                                    failedTestCases.writeToNamedFile(reportInfoCurrentFilterFromSidebar, "Please check filters- unable to remove from side menu! Clicked Button but Frontend doesn't respond!", "FailAndReview");
+                                    ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                                 }
                             }else {
                                 report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove Filter!");
                                 failedTestCases.writeToNamedFile(reportInfoCurrentFilterFromSidebar, "Please check filters- unable to remove from side menu!", "FailAndReview");
                                 failedTestCases.writeToNamedFile("=================================TC 15","FailAndReview");
+                                ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
+
                             }
                             report.writeToFile("Checking GridPage Filter Remove from Sidebar", "Complete!");
                             report.writeToFile("");
@@ -1242,13 +1243,14 @@ public class GridPageTest {
                                 webDriver.findElement(By.xpath(Homepage.getProperty("page.sidebar.allfilters.reset"))).click();
                                 if (LocationUrlBefore != webDriver.getCurrentUrl() ){
                                     report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Complete!");
+                                    ChangeCheckBox.adjustStyle(true,"complete",filtersApply);
                                 }else {
                                     report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Not Successful! Couldn't remove all Filters via RemoveAllButton!");
                                     failedTestCases.writeToNamedFile("Checking GridPage- Remove All Filter from Sidebar: ", "Please check: Not Successful! Couldn't remove all Filters via RemoveAllButton!", "FailAndReview");
                                     failedTestCases.writeToNamedFile("=================================TC 15","FailAndReview");
+                                    ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                                 }
 
-                                ChangeCheckBox.adjustStyle(true,"complete",filtersApply);
 
                             }catch (Exception noResetAllFilters){
                                 report.writeToFile("Checking GridPage Remove All Filter from Sidebar: ", "Not Successful! Couldn't find remove all Button!");

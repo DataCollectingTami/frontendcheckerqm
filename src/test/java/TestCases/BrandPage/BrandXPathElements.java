@@ -44,32 +44,6 @@ public class BrandXPathElements {
         driver = new ChromeDriver(option);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
-    @Test
-    public void checkMainLogo(){
-        locator = "page.main.logo";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
-    }
-    @Test
-    public void checkShopPromoCategory(){
-        locator = "page.main.shop.promo.category";
-        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
-        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
-        try{
-            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
-        }catch (Exception xpathNotFound){
-            logger.error("Couldn't find "+locator+" \n" +
-                    Homepage.get(locator)+" | might be outdated");
-        }
-        Assert.assertNotNull(element);
-    }
 
     @Test
     public void checkBrandPageQuicklinks(){

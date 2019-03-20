@@ -496,6 +496,7 @@ public class MainController implements Serializable{
                             homepageTest.checkingPrivacyPopUp(webDriver,report, frontendHomepageController.checkPrivacyPopUp, statusInfo,inputSearch, Homepage);
                             homepageTest.checkingImprint(webDriver,report, frontendHomepageController.checkImprint, statusInfo,inputImprintURL, Homepage);
                             homepageTest.checkingPrivacyPolicy(webDriver,report, frontendHomepageController.PrivacyPolicy, statusInfo,inputPrivacyPolicy, Homepage);
+
                             //VisualResults visualResults = new VisualResults();
                             //Platform.runLater(() -> visualResults.createPieChart(PlaceForPieCharts,frontendHomepageController.frontendHomePageCheckBoxCollection.getChildren().toArray(new JFXCheckBox[0]),"HomepageTest"));
                         }catch (Exception noHomePageWorking){
