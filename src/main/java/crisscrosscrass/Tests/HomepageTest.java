@@ -1,10 +1,12 @@
 package crisscrosscrass.Tests;
 
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
 import crisscrosscrass.Tasks.WebdriverTab;
+import crisscrosscrass.countries;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -45,18 +47,30 @@ public class HomepageTest {
                     WebdriverTab newtab = new WebdriverTab();
                     //use CategoryLinksLeftSideMenu.size() instead of 1 for Loop!
                     for (int i = 0; i < CategoryLinksLeftSideMenu.size(); i++) {
-                        webDriver.switchTo().window(tabs.get(0));
-
+                        //webDriver.switchTo().window(tabs.get(0)); /**not needed anymore**/
                         String menuLinkUrl = CategoryLinksLeftSideMenu.get(i).getAttribute("href").trim();
                         String menuLinkName =CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").toLowerCase().trim();
+
+                        /**my code*/
+                        boolean isSuccessful= newtab.openCheckURLH1(webDriver,CategoryLinksLeftSideMenu.get(i).getAttribute("href"),menuLinkName);
+                        //webDriver.switchTo().window(tabs.get(1));
+                        //String menuLinkH1= webDriver.findElement(By.xpath(Homepage.getProperty("general.h1"))).getText().trim();
+                        //webDriver.switchTo().window(tabs.get(0));
                         //boolean isSuccessful = newtab.open(webDriver, CategoryLinksLeftSideMenu.get(i).getAttribute("href"),CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").toLowerCase().trim());
-                        //if (isSuccessful) {
-                        if (menuLinkUrl.contains(menuLinkName)){
+                        if (isSuccessful) {
+                            report.writeToFile("TEST CategoryLinksLeftSideMenu " + i + ": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
+                            failedTestCases.writeToNamedFile("Category links in left Menu! ", "Please review the following URL. Couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"), "FailAndReview");
+                            }
+
+                        /**end of my code*/
+                     /**   if (menuLinkUrl.contains(menuLinkName)){
                             report.writeToFile("TEST CategoryLinksLeftSideMenu " + i + ": Successful | ", "found \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                         } else {
                             report.writeToFile("unable to check! ", "couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"));
                             failedTestCases.writeToNamedFile("Category links in left Menu! ", "Please review the following URL. Couldn't find \"" + CategoryLinksLeftSideMenu.get(i).getAttribute("textContent").trim() + "\" Keyword in URL : " + CategoryLinksLeftSideMenu.get(i).getAttribute("href"), "FailAndReview");
-                        }
+                        } */
                     }
                 }
                 ChangeCheckBox.adjustStyle(true, "complete", checkCategoryLinksLeftSideMenu);
@@ -184,7 +198,8 @@ public class HomepageTest {
                 //use shopCategoryLinks.size() instead of 1 for Loop!
                 for (int i = 0 ; i < shopCategoryLinks.size() ; i++){
                     webDriver.switchTo().window(tabs.get(0));
-                    boolean isSuccessful = newtab.open(webDriver, shopCategoryLinks.get(i).getAttribute("href"), shopCategoryNames.get(i).getAttribute("textContent").trim(), ShopOfTheWeekImage, Homepage.getProperty("page.grid.shop.image"));
+                    boolean isSuccessful=newtab.openCheckURLH1(webDriver,shopCategoryLinks.get(i).getAttribute("href"),shopCategoryNames.get(i).getAttribute("textContent").trim());
+                    //boolean isSuccessful = newtab.open(webDriver, shopCategoryLinks.get(i).getAttribute("href"), shopCategoryNames.get(i).getAttribute("textContent").trim(), ShopOfTheWeekImage, Homepage.getProperty("page.grid.shop.image"));
                     if (isSuccessful){
                         report.writeToFile("TEST ShopCategoryLinks "+i+": Successful | ", "found \"" + shopCategoryNames.get(i).getAttribute("textContent").trim() + "\" Keyword at URL : "+ shopCategoryLinks.get(i).getAttribute("href") + " and same Image is available");
                     }else {
@@ -195,7 +210,6 @@ public class HomepageTest {
                 webDriver.navigate().to(inputSearch.getText().trim());
                 ChangeCheckBox.adjustStyle(true,"complete",checkCategoryLinksFromShopOfTheWeek);
                 report.writeToFile(infoMessage, "Complete!");
-                failedTestCases.writeToNamedFile("=================================TC 2.2","FailAndReview");
 
 
             }catch (Exception noShopLogoFound){
@@ -434,7 +448,7 @@ public class HomepageTest {
         report.writeToFile("=================================", "");
     }
 
-    public void checkingFooterLinks(ChromeDriver webDriver, Report report, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, Properties Homepage){
+    public void checkingFooterLinks(ChromeDriver webDriver, Report report, JFXCheckBox checkFooterLinks, Text statusInfo, TextField inputSearch, JFXComboBox countrySelection, Properties Homepage){
         // Footer Links
         final String infoMessage = checkFooterLinks.getText();
         ChangeCheckBox.adjustStyle(false,"progress",checkFooterLinks);
@@ -459,6 +473,7 @@ public class HomepageTest {
                 report.writeToFile("Check all Footers First Column: ");
                 for (int i = 0; i < footerFooterLinks.size() ; i++){
                     webDriver.switchTo().window(tabs.get(0));
+                    String country = countrySelection.getSelectionModel().getSelectedItem().toString();
                     if (footerFooterLinks.get(i).getAttribute("href").contains("newsletter")){
                         isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),"newsletter");
                         if (isSuccessful){
@@ -467,8 +482,81 @@ public class HomepageTest {
                             report.writeToFile("unable to check! |", "couldn't found \"" + "Newsletter" + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
                             failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please review the following URL: couldn't find \"" + "Newsletter" + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
                         }
-                    }else {
-                        isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),footerFooterLinks.get(i).getText().trim());
+                    }
+                    /** else-if for each link in the footers by TD*/
+                    else if(i==0){
+                    if (footerFooterLinks.get(0).getAttribute("href").equals(countries.valueOf(country).getlocationImprintPage())) {
+                            report.writeToFile("Successful: First link redirects to imprint page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to :: "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+                    else if(i==1){
+
+                        if (footerFooterLinks.get(1).getAttribute("href").equals(countries.valueOf(country).getPrivacyPage())) {
+                            report.writeToFile("Successful: Second link redirects to Privacy page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+                    else if(i==2){
+
+                        if (footerFooterLinks.get(2).getAttribute("href").equals(countries.valueOf(country).getLocationDataPrivacy())) {
+                            report.writeToFile("Successful: Third link redirects to Privacy Data page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+                   //newsletter is link # 3
+                    else if(i==4){
+
+                        if (footerFooterLinks.get(4).getAttribute("href").equals(countries.valueOf(country).getLocationFaQ())) {
+                            report.writeToFile("Successful: 5th link redirects to FAQ page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+                    else if(i==5){
+                        if (footerFooterLinks.get(5).getAttribute("href").trim().contains("ueber-uns") || footerFooterLinks.get(5).getAttribute("href").contains("https://www.visual-meta.com/en/about-us")) {
+                            report.writeToFile("Successful: 6th link redirects to About Us Page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+                    else if(i==6){
+                        if (footerFooterLinks.get(6).getAttribute("href").trim().contains("jobs")) {
+                            report.writeToFile("Successful: 7th link redirects to Jobs Page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+                    else if(i==7){
+                        if (footerFooterLinks.get(7).getAttribute("href").equals(countries.valueOf(country).getLocationPartnershopsPageURL())) {
+                            report.writeToFile("Successful: 8th link redirects to Partner Shops Page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+
+                    else if(i==8){
+                        if (footerFooterLinks.get(8).getAttribute("href").equals(countries.valueOf(country).getLocationBecomePartnerPageURL())) {
+                            report.writeToFile("Successful: 9th link redirects to Become a Partner Page.");
+                        }else{
+                            report.writeToFile("unable to check! ", "couldn't found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerFooterLinks.get(i).getAttribute("href") );
+                            failedTestCases.writeToNamedFile("Checking Footer Links! ", "Please check if the following URL is correct: link \"" + footerFooterLinks.get(i).getText().trim() + "\" redirects to : "+ footerFooterLinks.get(i).getAttribute("href"), "FailAndReview" );
+                        }
+                    }
+
+                    /** end of additional else-if by TD*/
+                    else {
+                        isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerFooterLinks.get(i).getAttribute("href"),footerFooterLinks.get(i).getText().toLowerCase().trim());
                         if (isSuccessful){
                             report.writeToFile("TEST FooterLinks "+i+": Successful | ", "found \"" + footerFooterLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerFooterLinks.get(i).getAttribute("href") );
                         }else {
@@ -480,19 +568,35 @@ public class HomepageTest {
                 report.writeToFile("");
                 report.writeToFile("Check all Footers Second Column: ");
                 List<WebElement> footerCategoryLinks = webDriver.findElementsByXPath(Homepage.getProperty("page.main.footer.categories"));
+                String country = countrySelection.getSelectionModel().getSelectedItem().toString();
                 for (int i = 0 ; i < footerCategoryLinks.size() ; i++){
                     webDriver.switchTo().window(tabs.get(0));
-                    isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,footerCategoryLinks.get(i).getAttribute("href"),footerCategoryLinks.get(i).getText().trim());
-                    if (isSuccessful){
-                        report.writeToFile("TEST FooterCategoryLinks "+i+": Successful | ", "found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword at URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
-                    }else {
-                        report.writeToFile("unable to check! |", "couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href") );
-                        failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please check the following URL: couldn't find \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : "+ footerCategoryLinks.get(i).getAttribute("href"),"FailAndReview" );
+                    /**test for second column by TD*/
+                    if(footerCategoryLinks.get(i).getAttribute("href").equals(countries.valueOf(country).getLocationBrandOverviewPage())) {
+                        report.writeToFile("Brand Page successfully found in position " + i + " in second column.");
                     }
+                    else if (footerCategoryLinks.get(i).getAttribute("href").equals(countries.valueOf(country).getLocationVoucherPage())){
+                        report.writeToFile("Merchandise Page successfully found in position " + i + " in second column.");
+                    }
+                    else if (footerCategoryLinks.get(i).getAttribute("href").equals(countries.valueOf(country).getLocationMerchandiseOverviewPageURL())){
+                        report.writeToFile("Vouchers Page successfully found in position " + i + " in second column.");
+                    }
+                        else {
+                        /**end of test for second column by TD*/
+                        isSuccessful = newtab.openCheckURLH1(webDriver,footerCategoryLinks.get(i).getAttribute("href").trim(),footerCategoryLinks.get(i).getText().toLowerCase().trim());
+                        //isSuccessful = newtab.openCheckURLTitleH1H2(webDriver, footerCategoryLinks.get(i).getAttribute("href"), footerCategoryLinks.get(i).getText().toLowerCase().trim());
+                        if (isSuccessful) {
+                            report.writeToFile("TEST FooterCategoryLinks " + i + ": Successful | ", "found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword at URL : " + footerCategoryLinks.get(i).getAttribute("href"));
+                        } else {
+                            report.writeToFile("unable to check! |", "couldn't found \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : " + footerCategoryLinks.get(i).getAttribute("href"));
+                            failedTestCases.writeToNamedFile("Checking Footer Links! |", "Please check the following URL: couldn't find \"" + footerCategoryLinks.get(i).getText().trim() + "\" Keyword in URL : " + footerCategoryLinks.get(i).getAttribute("href"), "FailAndReview");
+                        }
+//end else down
+}
                 }
                 ChangeCheckBox.adjustStyle(true,"complete",checkFooterLinks);
                 report.writeToFile(infoMessage, "Complete!");
-                failedTestCases.writeToNamedFile("================================= TC 5","FailAndReview");
+                failedTestCases.writeToNamedFile("================================= TC 5- Footers linked successfully checked.","FailAndReview");
                 webDriver.navigate().to(inputSearch.getText().trim());
 
             }catch (Exception noFooterFound){

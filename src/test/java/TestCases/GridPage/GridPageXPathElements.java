@@ -50,6 +50,21 @@ public class GridPageXPathElements {
     }
 
     @Test
+    public void checkGeneralH1(){
+        locator = "general.h1";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationMainPage()));
+        driver.findElementByXPath(Homepage.getProperty("page.main.links")).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
     public void checkGridWindows(){
         locator = "page.grid.windows";
         logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
@@ -617,6 +632,21 @@ public class GridPageXPathElements {
         Assert.assertNotNull(element);
     }
 
+    @Test
+    public void checkFillInMore(){
+        locator = "page.grid.fillInMore";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.manage().window().maximize();
+        driver.navigate().to(gridFIUrl);
+        try {
+            element = driver.findElement(By.xpath(Homepage.getProperty(locator)));
+        } catch (Exception xpathNotFound) {
+            logger.error("Couldn't find " + locator + " \n" +
+                    Homepage.get(locator) + " | might be outdated");
+        }
+
+        Assert.assertNotNull(element);
+    }
 
 
     @AfterClass

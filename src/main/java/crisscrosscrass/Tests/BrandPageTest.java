@@ -207,7 +207,6 @@ public class BrandPageTest {
                 WebDriverWait wait = new WebDriverWait(webDriver, 10);
                 try{
                    //Find element brand search
-                    //TODO: make brand mandatory when starting app and link input box to it
                     webDriver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar"))).sendKeys(inputGridPageKeyword.getText().trim());
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("brandpage.searchbar.option"))));
                     webDriver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar.option"))).click();

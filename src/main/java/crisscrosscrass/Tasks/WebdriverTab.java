@@ -3,6 +3,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+
 import java.util.ArrayList;
 
 public class WebdriverTab {
@@ -59,6 +60,37 @@ public class WebdriverTab {
         }
         return answer;
     }
+
+    public boolean openCheckURLH1(WebDriver webDriver, String baseUrl, String checkKeyword ){
+        answer = false;
+
+        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1)); //switches to new tab
+
+        webDriver.get(baseUrl);
+
+        boolean checkH1Element = webDriver.findElements( By.id("//*[@id='headline']/h1") ).size() != 0;
+        boolean checkH2Element = webDriver.findElements( By.id("//*[@id='headline']/h2") ).size() != 0;
+        try{
+
+            String h1Text = webDriver.findElement(By.xpath("//*[@id='headline']/div/h1")).getText().toLowerCase().trim();
+            if ( webDriver.getTitle().toLowerCase().contains(checkKeyword.toLowerCase().trim()) | webDriver.getCurrentUrl().contains(checkKeyword.toLowerCase().trim()) | h1Text.contains(checkKeyword.toLowerCase().trim())
+                     ) {
+                answer = true;
+            }else{
+                answer = false;
+            }
+        }catch (Exception noSupport){
+            logger.info("Error here : "+noSupport);
+        }
+        finally {
+            webDriver.switchTo().window(tabs.get(1)).close();
+            webDriver.switchTo().window(tabs.get(0));
+        }
+        return answer;
+    }
+
     public boolean open(WebDriver webDriver, String baseUrl, String checkKeyword, String checkPreviousImageUrl, String imageXPathGrid ){
         answer = false;
         screenShot = false;

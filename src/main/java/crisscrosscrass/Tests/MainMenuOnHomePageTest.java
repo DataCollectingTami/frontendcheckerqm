@@ -57,7 +57,8 @@ public class MainMenuOnHomePageTest {
                         for (int j = 0 ; j < 8 ; j++ ){
                             hover.moveToElement(allMainMenuSubLinks.get(j)).build().perform();
                             if (null != allMainMenuSubLinks.get(j).getAttribute("href")){
-                                boolean isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,allMainMenuSubLinks.get(j).getAttribute("href"),allMainMenuSubLinks.get(j).getAttribute("innerHTML"));
+                                boolean isSuccessful = newtab.openCheckURLH1(webDriver,allMainMenuSubLinks.get(j).getAttribute("href"),allMainMenuSubLinks.get(j).getAttribute("innerHTML"));
+                                //boolean isSuccessful = newtab.openCheckURLTitleH1H2(webDriver,allMainMenuSubLinks.get(j).getAttribute("href"),allMainMenuSubLinks.get(j).getAttribute("innerHTML"));
                                 if (isSuccessful){
                                     report.writeToFile("Successful |  found \"" + allMainMenuSubLinks.get(j).getAttribute("innerHTML") + "\" Keyword at URL : "+ allMainMenuSubLinks.get(j).getAttribute("href") );
                                 }else {

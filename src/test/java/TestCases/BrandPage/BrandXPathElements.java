@@ -104,6 +104,74 @@ public class BrandXPathElements {
         Assert.assertNotNull(element);
     }
 
+    @Test
+    public void checkBrandPageSearchBar(){
+        locator = "brandpage.searchbar";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkBrandPageSearchBarOption(){
+        locator = "brandpage.searchbar.option";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        //does not work if window is not maximized
+        driver.manage().window().maximize();
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar"))).sendKeys("nike");
+
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkBrandPageSeriesBlock(){
+        locator = "brandpage.series.block";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        //does not work if window is not maximized
+        driver.manage().window().maximize();
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar"))).sendKeys("nike");
+        driver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar.option"))).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
+    @Test
+    public void checkBrandPageSeriesLink(){
+        locator = "brandpage.series.link";
+        logger.info("Starting test " + new Object(){}.getClass().getEnclosingMethod().getName());
+        //does not work if window is not maximized
+        driver.manage().window().maximize();
+        driver.get(String.valueOf(countries.valueOf(countrieSelection).getLocationBrandOverviewPage()));
+        driver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar"))).sendKeys("nike");
+        driver.findElement(By.xpath(Homepage.getProperty("brandpage.searchbar.option"))).click();
+        try{
+            element = driver.findElement (By.xpath(Homepage.getProperty(locator)));
+        }catch (Exception xpathNotFound){
+            logger.error("Couldn't find "+locator+" \n" +
+                    Homepage.get(locator)+" | might be outdated");
+        }
+        Assert.assertNotNull(element);
+    }
+
     @AfterClass
     public static void closeBrowser(){
         try {

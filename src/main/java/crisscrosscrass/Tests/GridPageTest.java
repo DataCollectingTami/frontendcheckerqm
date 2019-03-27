@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import crisscrosscrass.Tasks.ChangeCheckBox;
 import crisscrosscrass.Tasks.Report;
 import crisscrosscrass.Tasks.ScreenshotViaWebDriver;
+import crisscrosscrass.Tasks.WebdriverTab;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -592,8 +593,11 @@ public class GridPageTest {
 
                     try{
                         final String tagNameDeeperStyle = webDriver.findElementByXPath(Homepage.getProperty("page.grid.first.tag")).getText();
+                        String tagNameURL = webDriver.findElementByXPath(Homepage.getProperty("page.grid.first.tag")).getAttribute("href");
+                        WebdriverTab newtab = new WebdriverTab();
                         webDriver.findElementByXPath(Homepage.getProperty("page.grid.first.tag")).click();
-                        if (webDriver.getCurrentUrl().contains(tagNameDeeperStyle.toLowerCase())){
+                        if (newtab.openCheckURLH1(webDriver, tagNameURL,tagNameDeeperStyle)){
+                        //if (webDriver.getCurrentUrl().contains(tagNameDeeperStyle.toLowerCase())){
                             report.writeToFile(infoMessage, "Successful! Clicked on first tag and redirected to a functioning page!");
                             ChangeCheckBox.adjustStyle(true,"complete",deeperStyle);
                         }else{
@@ -1211,6 +1215,8 @@ public class GridPageTest {
                             Point hoverItem = GridPadeAppliedFilters.get(0).getLocation();
                             ((JavascriptExecutor)webDriver).executeScript("return window.title;");
                             ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
+
+                            /** URL contains "filter text"  does not work because of accents and sales/sconto**/
                             if (webDriver.getCurrentUrl().contains(textFilterForTestCaseRemoveFromSidebar)){
                                 GridPadeAppliedFilters.get(0).click();
                                 if (urlLocationBefore != webDriver.getCurrentUrl()){
