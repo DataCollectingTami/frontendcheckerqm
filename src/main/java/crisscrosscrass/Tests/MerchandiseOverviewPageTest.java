@@ -55,12 +55,11 @@ public class MerchandiseOverviewPageTest {
                     List<WebElement> AllAlphabetLetters = webDriver.findElementsByXPath(Homepage.getProperty("merchandisepage.alphabet.letters"));
                     WebElement ViewPortElement = null;
                     for (WebElement AlphabetLetter : AllAlphabetLetters){
-                        if (AlphabetLetter.getText().toLowerCase().trim().equals(selectedLetter.toLowerCase().trim())){
-                            ViewPortElement = AlphabetLetter;
-                            break;
+                       if (AlphabetLetter.getText().toLowerCase().trim().contains(selectedLetter.toLowerCase().trim())){
+                           ViewPortElement = AlphabetLetter;
+                           break;
                         }
                     }
-
 
                     boolean isInViewPort = (boolean)((JavascriptExecutor)webDriver).executeScript(
                             "var elem = arguments[0],                 " +
@@ -198,7 +197,7 @@ public class MerchandiseOverviewPageTest {
                             report.writeToFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ");
                             failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
                             failedTestCases.writeToNamedFile("Merchandise Suggestions for \""+AllSearchQueries[i].trim()+"\": ", "FailAndReview");
-                            failedTestCases.writeToNamedFile("========================================================================================","FailAndReview");
+                            failedTestCases.writeToNamedFile("=============================","FailAndReview");
                             for (WebElement Merchandise : AllMerchandiseSuggestions){
                                 report.writeToFile(Merchandise.getText());
                                 failedTestCases.writeToNamedFile(Merchandise.getText(), "FailAndReview");

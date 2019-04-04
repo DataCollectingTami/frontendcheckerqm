@@ -190,9 +190,9 @@ public class FavoritePageXPathElements {
      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
 
      WebElement element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
-     element.sendKeys("tester@visual-meta.com");
+     element.sendKeys("tamiris.diversi@visual-meta.com");
      element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-     element.sendKeys("***");
+     element.sendKeys("**-");
      driver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
      try{
@@ -228,9 +228,9 @@ public class FavoritePageXPathElements {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
 
         WebElement element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
-        element.sendKeys("tester@visual-meta.com");
+        element.sendKeys("tamiris.diversi@visual-meta.com");
         element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-        element.sendKeys("***");
+        element.sendKeys("**-");
         driver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.button"))));
@@ -269,9 +269,9 @@ public class FavoritePageXPathElements {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.passwordInput"))));
 
         WebElement element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
-        element.sendKeys("tester@visual-meta.com");
+        element.sendKeys("tamiris.diversi@visual-meta.com");
         element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-        element.sendKeys("***");
+        element.sendKeys("**-");
         driver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
         try{

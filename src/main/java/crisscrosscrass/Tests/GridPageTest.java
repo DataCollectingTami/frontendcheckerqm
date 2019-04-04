@@ -1102,7 +1102,7 @@ public class GridPageTest {
                     List<WebElement> MySelectedFilters = webDriver.findElementsByXPath(Homepage.getProperty("page.sidebar.myfilters"));
                     String xPathMyFirstSelected = "";
                     String textFilterForTestCaseRemove = MySelectedFilters.get(0).getText().trim().toLowerCase();
-                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.gender"))).size() > 0){
+                    if(webDriver.findElements(By.xpath(Homepage.getProperty("page.sidebar.salesprice"))).size() > 0){
                         if(webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().matches(MySelectedFilters.get(0).getText().trim().toLowerCase())
                                 &&webDriver.findElementByXPath(Homepage.getProperty("page.sidebar.salesprice")).getText().trim().toLowerCase().length() == MySelectedFilters.get(0).getText().trim().toLowerCase().length() ) {
                             xPathMyFirstSelected = Homepage.getProperty("page.sidebar.salesprice");
@@ -1217,17 +1217,24 @@ public class GridPageTest {
                             ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverItem.getY())+");");
 
                             /** URL contains "filter text"  does not work because of accents and sales/sconto**/
-                            if (webDriver.getCurrentUrl().contains(textFilterForTestCaseRemoveFromSidebar)){
+                            //if (webDriver.getCurrentUrl().contains(textFilterForTestCaseRemoveFromSidebar)){
+                            if (GridPadeAppliedFilters.size()==3){
                                 GridPadeAppliedFilters.get(0).click();
                                 if (urlLocationBefore != webDriver.getCurrentUrl()){
-                                    webDriver.findElementByXPath(xPathMyFirstSelected).click();
+                                    //webDriver.findElementByXPath(xPathMyFirstSelected).click();
+
+                                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xPathMyFirstSelected)));
+                                    Point hoverFilter = webDriver.findElement(By.xpath(xPathMyFirstSelected)).getLocation();
+                                    ((JavascriptExecutor)webDriver).executeScript("return window.title;");
+                                    ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,"+(hoverFilter.getY())+");");
+                                    webDriver.findElement(By.xpath(xPathMyFirstSelected)).click();
                                     report.writeToFile(reportInfoCurrentFilterFromSidebar, "removed successfully!");
                                 }else {
                                     report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove! Clicked Button but Frontend doesn't respond!");
                                     failedTestCases.writeToNamedFile(reportInfoCurrentFilterFromSidebar, "Please check filters- unable to remove from side menu! Clicked Button but Frontend doesn't respond!", "FailAndReview");
                                     ChangeCheckBox.adjustStyle(true,"nope",filtersApply);
                                 }
-                            }else {
+                          }else {
                                 report.writeToFile(reportInfoCurrentFilterFromSidebar, "unable to remove Filter!");
                                 failedTestCases.writeToNamedFile(reportInfoCurrentFilterFromSidebar, "Please check filters- unable to remove from side menu!", "FailAndReview");
                                 failedTestCases.writeToNamedFile("=================================TC 15","FailAndReview");
