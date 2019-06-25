@@ -314,8 +314,8 @@ public class MainController implements Serializable{
         inputMerchandiseOverviewPageURL.setText(countries.valueOf(countrySelection.getSelectionModel().getSelectedItem().toString()).getLocationMerchandiseOverviewPageURL());
         startwebdriver.setDisable(false);
         if (countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){
-            settingImageGrouping.setSelected(false);
-            settingImageGrouping.setDisable(true);
+            //settingImageGrouping.setSelected(true);
+            settingImageGrouping.setDisable(false);
             updateCheckerTabs();
         }else{
             settingImageGrouping.setDisable(false);
@@ -1090,11 +1090,9 @@ public class MainController implements Serializable{
        // settingLucenePage.setSelected(true);
         settingMainMenuOnHomePage.setSelected(true);
         settingDetailPage.setSelected(true);
-        if (countrySelection.getValue() != null){
-            if (!countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")){settingImageGrouping.setSelected(true);}
-        }else{
+
             settingImageGrouping.setSelected(true);
-        }
+
         settingFavoritePage.setSelected(true);
         settingPartnerShopPage.setSelected(true);
         settingBecomeAPartnerPage.setSelected(true);
@@ -1117,11 +1115,9 @@ public class MainController implements Serializable{
        // settingLucenePage.setSelected(false);
         settingMainMenuOnHomePage.setSelected(false);
         settingDetailPage.setSelected(false);
-        if (countrySelection.getValue() != null) {
-            if (countrySelection.getValue() != null & !countrySelection.getSelectionModel().getSelectedItem().toString().equals("DE")) {settingImageGrouping.setSelected(false);}
-        }else{
+
             settingImageGrouping.setSelected(false);
-        }
+
         settingFavoritePage.setSelected(false);
         settingPartnerShopPage.setSelected(false);
         settingBecomeAPartnerPage.setSelected(false);

@@ -192,7 +192,7 @@ public class FavoritePageXPathElements {
      WebElement element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
      element.sendKeys("tamiris.diversi@visual-meta.com");
      element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-     element.sendKeys("**-");
+     element.sendKeys("O4-");
      driver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
      try{
@@ -230,7 +230,7 @@ public class FavoritePageXPathElements {
         WebElement element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
         element.sendKeys("tamiris.diversi@visual-meta.com");
         element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-        element.sendKeys("**-");
+        element.sendKeys("O4-");
         driver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Homepage.getProperty("page.myaccount.sorting.dropdown.button"))));
@@ -271,7 +271,7 @@ public class FavoritePageXPathElements {
         WebElement element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.emailInput"));
         element.sendKeys("tamiris.diversi@visual-meta.com");
         element = driver.findElementByXPath(Homepage.getProperty("page.myaccount.passwordInput"));
-        element.sendKeys("**-");
+        element.sendKeys("Oasis1234-");
         driver.findElementByXPath(Homepage.getProperty("page.myaccount.login.button")).click();
 
         try{
