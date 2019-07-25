@@ -25,8 +25,8 @@ public class GridPageXPathElements {
     private static Properties Homepage;
     private static String countrieSelection = "DE";
     private static String locator;
-    private static String gridUrl = "https://taschen.ladenzeile.de/damen/";
-    private static String gridFIUrl = "https://www.shopalike.es/hogar/bano/sale/beige/a-rayas/";
+    private static String gridUrl = "https://www.ladenzeile.de/mode/damen/jacken/winter/";
+    private static String gridFIUrl = "https://www.shopalike.fr/chaussures/enfant/chaussuresdeville/trotteurs/rouge/";
     WebElement element;
 
     @BeforeClass
